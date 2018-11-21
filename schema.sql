@@ -45,7 +45,7 @@ CREATE TABLE video(
 
 CREATE TABLE video_segment(
 	segment_number  INTEGER      NOT NULL,
-	duration        TIME(0)      NOT NULL,
+	duration        INTERVAL(0)  NOT NULL,
 	date_time_start TIMESTAMP(0) NOT NULL,
 	camera_id       INTEGER      NOT NULL,
 
