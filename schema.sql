@@ -35,8 +35,8 @@ CREATE TABLE camera(
 );
 
 CREATE TABLE video(
-	date_time_start TIMESTAMP(3) NOT NULL,
-	date_time_end   TIMESTAMP(3) NOT NULL,
+	date_time_start TIMESTAMP(0) NOT NULL,
+	date_time_end   TIMESTAMP(0) NOT NULL,
 	camera_id       INTEGER      NOT NULL,
 
 	PRIMARY KEY (date_time_start, camera_id),
@@ -45,8 +45,8 @@ CREATE TABLE video(
 
 CREATE TABLE video_segment(
 	segment_number  INTEGER      NOT NULL,
-	duration        TIME(3)      NOT NULL,
-	date_time_start TIMESTAMP(3) NOT NULL,
+	duration        TIME(0)      NOT NULL,
+	date_time_start TIMESTAMP(0) NOT NULL,
 	camera_id       INTEGER      NOT NULL,
 
 	PRIMARY KEY (segment_number, date_time_start, camera_id),
@@ -74,7 +74,7 @@ CREATE TABLE lookout(
 
 CREATE TABLE emergency_event(
 	phone_number          NUMERIC(9, 0) NOT NULL,
-	call_time             TIME(3)       NOT NULL,
+	call_time             TIME(0)       NOT NULL,
 	person_name           VARCHAR(80)   NOT NULL,
 	place_address         VARCHAR(255)  NOT NULL,
 	rescue_process_number INTEGER,
@@ -178,8 +178,8 @@ CREATE TABLE audits(
 	medium_number         INTEGER      NOT NULL,
 	entity_name           VARCHAR(80)  NOT NULL,
 	rescue_process_number INTEGER      NOT NULL,
-	date_time_start       TIMESTAMP(3) NOT NULL,
-	date_time_end         TIMESTAMP(3) NOT NULL,
+	date_time_start       TIMESTAMP(0) NOT NULL,
+	date_time_end         TIMESTAMP(0) NOT NULL,
 	audition_date         DATE         NOT NULL,
 	text                  TEXT         NOT NULL,
 
@@ -191,10 +191,10 @@ CREATE TABLE audits(
 
 CREATE TABLE requests(
 	coordinator_id        INTEGER      NOT NULL,
-	video_date_time_start TIMESTAMP(3) NOT NULL,
+	video_date_time_start TIMESTAMP(0) NOT NULL,
 	camera_id             INTEGER      NOT NULL,
-	date_time_start       TIMESTAMP(3) NOT NULL,
-	date_time_end         TIMESTAMP(3) NOT NULL,
+	date_time_start       TIMESTAMP(0) NOT NULL,
+	date_time_end         TIMESTAMP(0) NOT NULL,
 
 	PRIMARY KEY (coordinator_id, video_date_time_start, camera_id),
 	FOREIGN KEY coordinator_id REFERENCES coordinator(coordinator_id),
