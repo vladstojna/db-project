@@ -87,6 +87,7 @@ CREATE TABLE emergency_event(
 
 	PRIMARY KEY(phone_number, call_time),
 	FOREIGN KEY(rescue_process_number) REFERENCES rescue_process(rescue_process_number),
+	FOREIGN KEY(place_address) REFERENCES place(place_address),
 	UNIQUE(phone_number, person_name)
 );
 
