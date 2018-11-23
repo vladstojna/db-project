@@ -1,1 +1,72 @@
 <!doctype html>
+<html>
+	<head>
+		<title> db-project </title>
+		<meta charset="utf-8">
+
+		<style>
+			.collapsible {
+				background-color: #777;
+				color: #fff;
+				cursor: pointer;
+				padding: 18pt;
+				width: 100%;
+				border: none;
+				text-align: left;
+				outline: none;
+				font-size: 12pt;
+			}
+	
+			.active, .collapsible:hover {
+				background-color: #555;
+			}
+			
+			.content {
+				padding: 0 18pt;
+				overflow: hidden;
+				background-color: #f1f1f1;
+				max-height: 0;
+				transition: max-height 0.2s ease-out;
+			}
+		</style>
+	</head>
+
+	<body>
+		<button class="collapsible"> a) Insert or delete meta entries </button>
+		<div class="content">
+			<form action='scritp1.php' method='post'>
+
+				<p>Action:</p>
+				<input type='radio' name='mode' value='add' checked><br>
+				<input type='radio' name='mode' value='delete'><br>
+
+				<p>Table:</p> 
+				<input type='radio' name='type' value='place' checked><br>
+				<input type='radio' name='type' value='emergency_event'><br>
+				<input type='radio' name='type' value='rescue_process'><br>
+				<input type='radio' name='type' value='medium'><br>
+				<input type='radio' name='type' value='medium_entity'><br>
+				<br>
+
+			</form>
+		</div>
+	</body>
+
+	<script>
+		var coll = document.getElementsByClassName("collapsible");
+
+		for (let i = 0; i < coll.length; i++) {
+			coll[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+
+				var content = this.nextElementSibling;
+
+				if (content.style.maxHeight) {
+					content.style.maxHeight = null;
+				} else {
+					content.style.maxHeight = content.scrollHeight + "pt";
+				}
+			});
+		}
+	</script>
+</html>
