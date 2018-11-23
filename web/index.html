@@ -1,7 +1,6 @@
 <!doctype html>
 <html>
 	<head>
-<<<<<<< HEAD
 		<title> db-project </title>
 		<meta charset="utf-8">
 
@@ -11,7 +10,7 @@
 				color: #fff;
 				cursor: pointer;
 				padding: 18pt;
-				width: 100%;
+				width: 500pt;
 				border: none;
 				text-align: left;
 				outline: none;
@@ -23,8 +22,8 @@
 			}
 			
 			.content {
-				padding: 0 18pt;
 				overflow: hidden;
+				width: 500pt;
 				background-color: #f1f1f1;
 				max-height: 0;
 				transition: max-height 0.2s ease-out;
@@ -37,17 +36,20 @@
 		<div class="content">
 			<form action='scritp1.php' method='post'>
 
-				<p>Action:</p>
-				<input type='radio' name='mode' value='add' checked><br>
-				<input type='radio' name='mode' value='delete'><br>
+				Action:<br>
+				<select name='mode'>
+					<option value='add'>Add</option>
+					<option value='delete'>Delete</option>
+				</select>
 
-				<p>Table:</p> 
-				<input type='radio' name='type' value='place' checked><br>
-				<input type='radio' name='type' value='emergency_event'><br>
-				<input type='radio' name='type' value='rescue_process'><br>
-				<input type='radio' name='type' value='medium'><br>
-				<input type='radio' name='type' value='medium_entity'><br>
-				<br>
+				<br><br>Table:<br>
+				<select name='type'>
+					<option value='place'>Place</option>
+					<option value='emergency_event'>Emergency Event</option>
+					<option value='rescue_process'>Rescue Process</option>
+					<option value='medium'>Medium</option>
+					<option value='medium_entity'>Medium Entity</option>
+				</select>
 
 			</form>
 		</div>
@@ -70,13 +72,4 @@
 			});
 		}
 	</script>
-=======
-		<meta charset="utf-8">
-		<title>Project</title>
-		<link rel="styleSheet" type="text/css" href="css/style.css">
-	</head>
-	<body>
-		<h1>Project</h1>
-	</body>
->>>>>>> 8a5a70604cd5fd4b4cf4aea3183e8d14eafa974d
 </html>
