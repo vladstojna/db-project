@@ -8,44 +8,14 @@
 	</head>
 
 	<body>
-		<button class="collapsible"> a) Insert or delete meta entries </button>
-		<div class="content">
+		<p>a)</p>
+		<p>Insert place</p>
+
 			<form action='scritp1.php' method='post'>
-
-				<label for='action'>Action</label>
-				<select name='mode' class='first'>
-					<option value='add'>Add</option>
-					<option value='delete'>Delete</option>
-				</select>
-
-				<label for='table'>Table</label>
-				<select name='type' class='second'>
-					<option value='place'>Place</option>
-					<option value='emergency_event'>Emergency Event</option>
-					<option value='rescue_process'>Rescue Process</option>
-					<option value='medium'>Medium</option>
-					<option value='medium_entity'>Medium Entity</option>
-				</select>
-
+				<p><input type='hidden' name='action' value='add'></p>
+				<p><input type='hidden' name='table' value='place'></p>
+				<p>place address: <input type='text' name='place_address'></p>
+				<p><input type='submit' value='Submit'></p>
 			</form>
-		</div>
 	</body>
-
-	<script>
-		var coll = document.getElementsByClassName("collapsible");
-
-		for (let i = 0; i < coll.length; i++) {
-			coll[i].addEventListener("click", function() {
-				this.classList.toggle("active");
-
-				var content = this.nextElementSibling;
-
-				if (content.style.maxHeight) {
-					content.style.maxHeight = null;
-				} else {
-					content.style.maxHeight = content.scrollHeight + "pt";
-				}
-			});
-		}
-	</script>
 </html>
