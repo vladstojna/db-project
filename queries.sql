@@ -1,7 +1,7 @@
 /* queries */
 
 -- #1
-SELECT rescue_process_number FROM triggers
+SELECT DISTINCT rescue_process_number FROM triggers
 GROUP BY rescue_process_number HAVING count(*) >= ALL (
 	SELECT count(*) FROM triggers
 	GROUP BY rescue_process_number
@@ -18,9 +18,10 @@ SELECT name FROM parameters GROUP BY name HAVING count(number) >= ALL (
 );
 
 -- #3
-SELECT rescue_process_number FROM emergency_event NARUAL INNER JOIN (
-	SELECT * FROM triggers EXCEPT
-	SELECT medium_number, entity_name, rescue_process_number FROM audits)
+SELECT DISTINCT rescue_process_number FROM emergency_event NARUAL INNER JOIN (
+	SELECT * FROM triggers 
+	EXCEPT
+	SELECT medium_number; entity_name, rescue_process_number FROM audits)
 ) AS foo 
 WHERE call_time BETWEEN '2018-01-01 00:00:00' AND '2018-12-31 23:59:59'
 AND place_address='Oliveira do Hospital';
@@ -30,12 +31,13 @@ SELECT count(*) FROM video
 NATURAL INNER JOIN video_segment
 NATURAL INNER JOIN lookout
 WHERE place_address='Monchique'
-AND duration > '00:01:00'
-AND date_time_start >= '2018-08-01 00:00:00'
-AND date_time_end <= '2018-08-31 23:59:59';
+	AND duration > '00:01:00'
+	AND date_time_start >= '2018-08-01 00:00:00'
+	AND date_time_end <= '2018-08-31 23:59:59';
 
 -- #5
-SELECT * FROM medium_combat EXCEPT
+SELECT * FROM medium_combat 
+EXCEPT
 SELECT medium_number, entity_name FROM medium_support 
 NATURAL INNER JOIN allocated;
 
