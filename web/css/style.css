@@ -1,7 +1,15 @@
 /* style */
 
 body {
-	margin: 0px;
-	background-color: #dddddd;
+	margin: 100px;
+	background-color: #1f1f1f;
 	overflow: hidden;
+	color: #eeeeee;
+	font-weight: normal;
+	font-size: 20pt;
+	font-family: 'Montserrat', sans-serif;
+}
+
+a {
+	color: #7ca8ef;
 }
