@@ -1,8 +1,4 @@
 <html>
-	<head>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
 	<body>
 	<h3>Database</h3>
 <?php
@@ -28,12 +24,10 @@
 			echo("<tr>\n");
 			echo("<td>{$row['tablename']}</td>\n");
 			echo("</tr>\n");
-			echo("<td><a href=\"list.php?tablename={$row['tablename']}\">
-				List table</a></td>\n");
 		}
 		echo("</table>\n");
 
-		echo("<a href=\"../index.html\"><- Back</a>");
+		echo("<a href=\"../index.html\">< Back</a>");
 
 		$db = null;
 		
