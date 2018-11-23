@@ -4,7 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
-	<h3>Database</h3>
+	<h3>Table: <?=$_REQUEST['tablename']?> </h3>
 <?php
 	try {
 		$host     = "db.ist.utl.pt";
@@ -15,25 +15,23 @@
 		$db = new PDO("pgsql:host=$host; dbname=$dbname", $user, $password);
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$list_tables =
-			"SELECT tablename FROM pg_catalog.pg_tables
-			 WHERE schemaname = 'public' ORDER BY tablename ASC;";
+		$table = <?=$_REQUEST['tablename']?>
 
-		$result = $db->prepare($list_tables);
+		$sql = "SELECT * FROM $table;";
+
+		$result = $db->prepare($sql);
 		$result->execute();
 
 		echo("<table border=\"1\" cellspacing=\"5\">\n");
-		echo("<tr><td>Table Name</td></tr>\n");
+		echo("<tr><td><b> $table </b></td></tr>\n");
 		foreach($result as $row) {
 			echo("<tr>\n");
-			echo("<td>{$row['tablename']}</td>\n");
+			echo("<td>{$row['table']}</td>\n");
 			echo("</tr>\n");
-			echo("<td><a href=\"list.php?tablename={$row['tablename']}\">
-				List table</a></td>\n");
 		}
 		echo("</table>\n");
 
-		echo("<a href=\"../index.html\"><- Back</a>");
+		echo("<a href=\"test.php\"><- Back</a>");
 
 		$db = null;
 		
