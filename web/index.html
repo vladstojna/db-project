@@ -4,31 +4,7 @@
 		<title> db-project </title>
 		<meta charset="utf-8">
 
-		<style>
-			.collapsible {
-				background-color: #777;
-				color: #fff;
-				cursor: pointer;
-				padding: 18pt;
-				width: 500pt;
-				border: none;
-				text-align: left;
-				outline: none;
-				font-size: 12pt;
-			}
-	
-			.active, .collapsible:hover {
-				background-color: #555;
-			}
-			
-			.content {
-				overflow: hidden;
-				width: 500pt;
-				background-color: #f1f1f1;
-				max-height: 0;
-				transition: max-height 0.2s ease-out;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 
 	<body>
@@ -36,14 +12,14 @@
 		<div class="content">
 			<form action='scritp1.php' method='post'>
 
-				Action:<br>
-				<select name='mode'>
+				<label for='action'>Action</label>
+				<select name='mode' class='first'>
 					<option value='add'>Add</option>
 					<option value='delete'>Delete</option>
 				</select>
 
-				<br><br>Table:<br>
-				<select name='type'>
+				<label for='table'>Table</label>
+				<select name='type' class='second'>
 					<option value='place'>Place</option>
 					<option value='emergency_event'>Emergency Event</option>
 					<option value='rescue_process'>Rescue Process</option>
