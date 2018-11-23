@@ -218,7 +218,10 @@ CREATE TABLE audits(
 		REFERENCES triggers(medium_number, entity_name, rescue_process_number)
 		ON DELETE CASCADE,
 	FOREIGN KEY (coordinator_id)
-		REFERENCES coordinator(coordinator_id) ON DELETE CASCADE
+		REFERENCES coordinator(coordinator_id) ON DELETE CASCADE,
+
+	CHECK (date_time_start < date_time_end),
+	CHECK (audition_date >= current_date)
 );
 
 CREATE TABLE requests(
