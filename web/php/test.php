@@ -27,6 +27,8 @@
 		}
 		echo("</table>\n");
 
+		echo("<a href=\"../index.html\"><- Back</a>");
+
 		$db = null;
 		
 	}
