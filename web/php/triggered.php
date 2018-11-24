@@ -33,7 +33,7 @@
 		}
 		echo("</table>\n");
 
-		echo("<a href=\"list_rp_getmedium.php\">~ Go back</a>");
+		echo("<a href=\"rp_getmedium.php\">~ Go back</a>");
 
 		$db = null;
 		
