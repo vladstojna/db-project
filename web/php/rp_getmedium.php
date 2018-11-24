@@ -7,22 +7,12 @@
 <?php
 	try {
 		include 'config.php';
+		include 'functions.php';
 
 		$sql = "SELECT rescue_process_number FROM rescue_process;";
 
-		$result = $db->prepare($sql);
-		$result->execute();
-
-		echo("<table border=\"1\"\n");
-		echo("<tr><td><b> Rescue Process Number (ID) </b></td></tr>\n");
-		foreach($result as $row) {
-			echo("<tr>\n");
-			echo("<td>{$row['rescue_process_number']}</td>\n");
-			echo("<td><a href=\"triggered.php?rescue_process_number={$row['rescue_process_number']}\">
-				Get Triggered Mediums</a></td>\n");
-			echo("</tr>\n");
-		}
-		echo("</table>\n");
+		print_table($db, $sql, "Rescue Processes", ["rescue_process_number"],
+			"triggered.php", "rescue_process_number", "Get Triggered Mediums");
 
 		echo("<a href=\"../index.html\">~ Go back</a>");
 

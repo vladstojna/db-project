@@ -1,7 +1,7 @@
 <?php
 
 	/* Prints relation contents as a table */
-	function print_table($db, $query, $title, $columns, $links=null, $link_targets=null) {
+	function print_table($db, $query, $title, $columns, $link=null, $parameter=null, $link_name=null) {
 		$result = $db->prepare($query);
 		$result->execute();
 
@@ -24,13 +24,11 @@
 			/* Prints data columns */
 			foreach($columns as $col_name) {
 				echo("<td>{$row[$col_name]}</td>\n");
-				if ($links != null) {
-					echo("<td><a href=${cell[1]}={$cell[0][$col_name]}></a></td>\n");
-				}
 			}
 
-			/* TODO Appends new columns with links if they exist */
-			if ($links != null) {
+			/* Appends new column with link if exists */
+			if ($link != null && $parameter != null && $link_name != null) {
+				echo("<td><a href=\"{$link}?{$parameter}={$row[$parameter]}\">${link_name}</a></td>\n");
 			}
 
 			echo("</tr>\n");
