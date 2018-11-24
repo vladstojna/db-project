@@ -33,3 +33,28 @@ td {
 	padding: 8pt;
 }
 
+form > * {
+	font-size: 14pt;
+}
+
+input[type=submit], select {
+	padding: 6pt;
+	margin: 12pt 8pt;
+	display: inline-block;
+	border: 0px;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+select {
+	background-color: #eeeeee;
+}
+
+input[type=submit] {
+	background-color: #7ca8ef;
+}
+
+input[type=submit]:hover {
+	background-color: #629bf7;
+}
+
