@@ -11,9 +11,16 @@ body {
 }
 
 a {
-	color: #7ca8ef;
 	padding: 8pt;
 	display: inline-block;
+}
+
+a:link {
+	color: #7ca8ef;
+}
+
+a:visited {
+	color: #9282ff;
 }
 
 th {
