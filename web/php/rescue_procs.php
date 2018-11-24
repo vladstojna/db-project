@@ -6,13 +6,7 @@
 	<body>
 <?php
 	try {
-		$host     = "db.ist.utl.pt";
-		$user     = "ist186526";
-		$password = "jzfw0082";
-		$dbname   = $user;
-
-		$db = new PDO("pgsql:host=$host; dbname=$dbname", $user, $password);
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		include 'config.php';
 
 		$sql = "SELECT rescue_process_number FROM rescue_process;";
 
@@ -24,13 +18,11 @@
 		foreach($result as $row) {
 			echo("<tr>\n");
 			echo("<td>{$row['rescue_process_number']}</td>\n");
-			echo("<td><a href=\"list_triggered_mediums.php?rescue_process_number={$row['rescue_process_number']}\">
-				Get Triggered Mediums</a></td>\n");
 			echo("</tr>\n");
 		}
 		echo("</table>\n");
 
-		echo("<a href=\"../index.html\">~ Go back</a>");
+		echo("<a href=\"../html/index_c.html\">~ Go back</a>");
 
 		$db = null;
 		

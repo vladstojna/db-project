@@ -6,26 +6,23 @@
 	<body>
 <?php
 	try {
-		$host     = "db.ist.utl.pt";
-		$user     = "ist186526";
-		$password = "jzfw0082";
-		$dbname   = $user;
+		include 'config.php';
 
-		$db = new PDO("pgsql:host=$host; dbname=$dbname", $user, $password);
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		$sql = "SELECT medium_number, medium_name, entity_name FROM medium;";
+		$sql =
+			"SELECT medium_number, medium_name, entity_name
+			FROM triggers NATURAL INNER JOIN medium
+			WHERE rescue_process_number = $_REQUEST[rescue_process_number];";
 
 		$result = $db->prepare($sql);
 		$result->execute();
 
 		echo("<table border=\"1\"\n");
 		echo("<tr><td>");
-		echo("<b> Medium Number </b>");
+		echo("<b>Medium Number</b>");
 		echo("</td><td>");
-		echo("<b> Medium Name </b>");
+		echo("<b>Medium Name</b>");
 		echo("</td><td>");
-		echo("<b> Entity Name </b>");
+		echo("<b>Entity Name</b>");
 		echo("</td></tr>\n");
 		foreach($result as $row) {
 			echo("<tr>\n");
@@ -36,7 +33,7 @@
 		}
 		echo("</table>\n");
 
-		echo("<a href=\"../html/index_c.html\">~ Go back</a>");
+		echo("<a href=\"list_rp_getmedium.php\">~ Go back</a>");
 
 		$db = null;
 		

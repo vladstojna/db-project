@@ -7,13 +7,7 @@
 	<h3>Database</h3>
 <?php
 	try {
-		$host     = "db.ist.utl.pt";
-		$user     = "ist186526";
-		$password = "jzfw0082";
-		$dbname   = $user;
-
-		$db = new PDO("pgsql:host=$host; dbname=$dbname", $user, $password);
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		include 'config.php';
 
 		$list_tables =
 			"SELECT tablename FROM pg_catalog.pg_tables
