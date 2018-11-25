@@ -55,10 +55,5 @@
 
 		return $table;
 	}
-
-	/* Prints a link */
-	function print_link($target, $name) {
-		echo("<a href=\"{$target}\"> $name </a>\n");
-	}
 ?>
 
