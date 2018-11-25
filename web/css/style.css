@@ -58,3 +58,26 @@ input[type=submit]:hover {
 	background-color: #629bf7;
 }
 
+.collapsible {
+	background-color: #454545;
+	color: #eee;
+	cursor: pointer;
+	padding: 10pt;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 14pt;
+}
+
+.active, .collapsible:hover {
+	background-color: #5a5a5a;
+}
+
+.content {
+	padding: 0 10pt;
+	display: none;
+	overflow: hidden;
+	background-color: #656565;
+}
+

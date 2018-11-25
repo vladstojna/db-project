@@ -9,44 +9,120 @@
 	<body>
 		<h1>Project</h1>
 
-		<a href="html/index_a.html">
+		<button class="collapsible">
 			<b> (a) </b> <i> Insert/Delete - </i>
 			Places,
 			Emergency Events,
 			Rescue Processes,
 			Mediums & Entities
-		</a>
-		<br/>
+		</button>
+		<div class="content">
+			<form action="php/action.php" id="form" method="GET">
 
-		<a href="html/index_b.html">
+				<select name="table" form="form">
+					<option value="place">           Place           </option>
+					<option value="emergency_event"> Emergency Event </option>
+					<option value="rescue_process">  Rescue Process  </option>
+					<option value="medium">          Medium          </option>
+					<option value="medium_entity">   Entity          </option>
+				</select>
+
+				<select name="action" form="form">
+					<option value="insert"> Insert </option>
+					<option value="delete"> Delete </option>
+				</select>
+
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+
+		<button class="collapsible">
 			<b> (b) </b> <i> Insert/Edit/Remove - </i>
 			Combat, Support & Rescue mediums
-		</a>
-		<br/>
+		</button>
+		<div class="content">
+			<form action="php/action.php" id="form">
 
-		<a href="html/index_c.html">
+				<select name="table" form="form" method="GET">
+					<option value="medium_combat">  Combat Medium  </option>
+					<option value="medium_support"> Support Medium </option>
+					<option value="medium_rescue">  Rescue Medium  </option>
+				</select>
+
+				<select name="action" form="form">
+					<option value="insert"> Insert </option>
+					<option value="edit">   Edit   </option>
+					<option value="delete"> Delete </option>
+				</select>
+
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+
+		<button class="collapsible">
 			<b> (c) </b> <i> List - </i>
 			Rescue Processes & Mediums
-		</a>
-		<br/>
+		</button>
+		<div class="content">
+			<form action="php/action.php" id="form" method="GET">
 
-		<a>
+				<label for="listings"> List </label>
+				<select id="listings" name="table" form="form">
+					<option value="rescue_process"> Rescue Processes </option>
+					<option value="medium">         Mediums          </option>
+				</select>
+				
+				<input type="hidden" name="action" value="list">
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+
+		<button class="collapsible" >
 			<b> (d) </b> <i> Associate - </i>
 			Rescue Processes to mediums & emergency events
-		</a>
-		<br/>
+		</button>
+		<div class="content">
+			<form action="php/action.php" id="form">
 
-		<a href="php/rp_getmedium.php">
+				<label for="candidate"> Associate Rescue Process to </label>
+				<select id="candidate" name="table" form="form" method="GET">
+					<option value="medium">          Medium  </option>
+					<option value="emergency_event"> Emergency Event </option>
+				</select>
+
+				<input type="hidden" name="action" value="associate">
+				<input type="submit" value="Submit">
+			</form>
+		</div>
+
+		<button class="collapsible" onclick="location.href='php/rp_getmedium.php'">
 			<b> (e) </b> <i> List - </i>
 			mediums triggered by a specific rescue process
-		</a>
-		<br/>
-
-		<a href="php/places_getmedium.php">
+		</button>
+		<div class="content"></div>
+		
+		<button class="collapsible" onclick="location.href='php/places_getmedium.php'">
 			<b> (f) </b> <i> List - </i>
 			Rescue Mediums triggered by rescue processes
 			that were originated in a specific place
-		</a>
+		</button>
+		<div class="content"></div>
+
+		<script>
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.display === "block")
+						content.style.display = "none";
+					else
+						content.style.display = "block";
+				});
+			}
+		</script>
 	</body>
 </html>
 
