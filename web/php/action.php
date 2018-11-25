@@ -28,6 +28,10 @@
 		case 'list':
 			include 'list.php';
 			break;
+		/* Default behaviour */
+		default:
+			echo("<p> Undefined action </p>");
+			echo("<a href=\"../index.html\"> ~ Home </a>");
 	}
 ?>
 	</body>
