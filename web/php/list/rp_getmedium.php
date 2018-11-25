@@ -5,7 +5,17 @@
 	$sql = "SELECT rescue_process_number FROM rescue_process;";
 
 	$table = print_table($db, $sql, "Rescue Processes", ["rescue_process_number"],
-		"triggered.php", ["rescue_process_number"], "Get Triggered Mediums");
+		"rp_getmedium.php", ["rescue_process_number"], "Get Triggered Mediums");
+
+	if (isset($_GET['rescue_process_number'])) {
+
+		$sql_final =
+			"SELECT medium_number, medium_name, entity_name
+			FROM triggers NATURAL INNER JOIN medium
+			WHERE rescue_process_number = $_GET[rescue_process_number];";
+
+		$table_final = print_table($db, $sql_final, "Triggered Mediums", ["medium_number", "medium_name", "entity_name"]);
+	}
 
 	$db = null;
 ?>
@@ -20,6 +30,8 @@
 <a href="../../index.html"> ~ Back </a>
 
 <?php if(isset($table)) echo $table; ?>
+
+<?php if(isset($table_final)) echo $table_final; ?>
 
 </body>
 </html>

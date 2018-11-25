@@ -6,7 +6,21 @@
 			FROM emergency_event NATURAL INNER JOIN triggers;";
 
 	$table = print_table($db, $sql, "Rescue Mediums", ["place_address"],
-		"triggered_rm.php", ["place_address"], "Get Rescue Mediums");
+		"places_getmedium.php", ["place_address"], "Get Rescue Mediums");
+
+	if (isset($_GET['place_address'])) {
+
+		$sql_final =
+			"SELECT DISTINCT medium_number, medium_name, entity_name
+			FROM emergency_event
+				NATURAL INNER JOIN triggers
+				NATURAL INNER JOIN medium_rescue
+				NATURAL INNER JOIN medium
+			WHERE place_address = '$_GET[place_address]';";
+
+		$table_final = print_table($db, $sql_final, "Triggered Rescue Mediums",
+			["medium_number", "medium_name", "entity_name"]);
+	}
 
 	$db = null;
 ?>
@@ -21,6 +35,8 @@
 <a href="../../index.html"> ~ Back </a>
 
 <?php if(isset($table)) echo $table; ?>
+
+<?php if(isset($table_final)) echo $table_final; ?>
 
 </body>
 </html>
