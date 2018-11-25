@@ -17,9 +17,9 @@
 			Mediums & Entities
 		</button>
 		<div class="content">
-			<form action="php/action.php" id="form" method="GET">
+			<form action="php/action.php" id="form1" method="GET">
 
-				<select name="table" form="form">
+				<select name="table" form="form1">
 					<option value="place">           Place           </option>
 					<option value="emergency_event"> Emergency Event </option>
 					<option value="rescue_process">  Rescue Process  </option>
@@ -27,7 +27,7 @@
 					<option value="medium_entity">   Entity          </option>
 				</select>
 
-				<select name="action" form="form">
+				<select name="action" form="form1">
 					<option value="insert"> Insert </option>
 					<option value="delete"> Delete </option>
 				</select>
@@ -41,15 +41,15 @@
 			Combat, Support & Rescue mediums
 		</button>
 		<div class="content">
-			<form action="php/action.php" id="form">
+			<form action="php/action.php" id="form2">
 
-				<select name="table" form="form" method="GET">
+				<select name="table" form="form2" method="GET">
 					<option value="medium_combat">  Combat Medium  </option>
 					<option value="medium_support"> Support Medium </option>
 					<option value="medium_rescue">  Rescue Medium  </option>
 				</select>
 
-				<select name="action" form="form">
+				<select name="action" form="form2">
 					<option value="insert"> Insert </option>
 					<option value="edit">   Edit   </option>
 					<option value="delete"> Delete </option>
@@ -64,10 +64,10 @@
 			Rescue Processes & Mediums
 		</button>
 		<div class="content">
-			<form action="php/action.php" id="form" method="GET">
+			<form action="php/action.php" id="form3" method="GET">
 
 				<label for="listings"> List </label>
-				<select id="listings" name="table" form="form">
+				<select id="listings" name="table" form="form3">
 					<option value="rescue_process"> Rescue Processes </option>
 					<option value="medium">         Mediums          </option>
 				</select>
@@ -82,10 +82,10 @@
 			Rescue Processes to mediums & emergency events
 		</button>
 		<div class="content">
-			<form action="php/action.php" id="form">
+			<form action="php/action.php" id="form4">
 
 				<label for="candidate"> Associate Rescue Process to </label>
-				<select id="candidate" name="table" form="form" method="GET">
+				<select id="candidate" name="table" form="form4" method="GET">
 					<option value="medium">          Medium  </option>
 					<option value="emergency_event"> Emergency Event </option>
 				</select>
