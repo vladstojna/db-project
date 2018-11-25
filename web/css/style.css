@@ -10,11 +10,6 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
-a {
-	padding: 8pt;
-	display: inline-block;
-}
-
 a:link {
 	color: #7ca8ef;
 }
@@ -29,7 +24,6 @@ th {
 }
 
 td {
-	/*text-align: center;*/
 	padding: 8pt;
 }
 
