@@ -11,7 +11,7 @@
 		$sql = "INSERT INTO place (place_address) VALUES (:address);";
 
 		$result = $db->prepare($sql);
-		$result->bindParams(':address', $_GET['place_address']);
+		$result->bindParam(':address', $_GET['place_address']);
 		$result->execute();
 
 		echo("<p> Value successfully inserted! </p>");
