@@ -6,11 +6,20 @@
 	</head>
 
 	<body>
-		<a href="../php/rescue_procs.php">List Rescue Processes</a>
-		<br/>
 
-		<a href="../php/mediums.php">List Mediums</a>
-		<br/>
+		<h3> List data </h3>
+
+		<form action="../php/action.php" id="form" method="GET">
+
+			<label for="listings"> List </label>
+			<select id="listings" name="table" form="form">
+				<option value="rescue_process"> Rescue Processes </option>
+				<option value="medium">         Mediums          </option>
+			</select>
+			
+			<input type="hidden" name="action" value="list">
+			<input type="submit" value="Submit">
+		</form>
 
 		<a href="../index.html">~ Go back </a>
 	</body>
