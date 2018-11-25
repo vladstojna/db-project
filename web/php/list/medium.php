@@ -13,6 +13,8 @@
 </head>
 <body>
 
+<a href="../../index.html"> ~ Back </a>
+
 <?php if (isset($table)) echo $table; ?>
 
 </body>
