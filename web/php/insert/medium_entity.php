@@ -8,11 +8,10 @@
 	try {
 		require_once '../config.php';
 
-		$entity_name = $_GET['entity_name'];
-
-		$sql = "INSERT INTO medium_entity VALUES ('{$entity_name}');";
+		$sql = "INSERT INTO medium_entity (entity_name) VALUES (:name);";
 
 		$result = $db->prepare($sql);
+		$result->bindParam(':name', $_GET['entity_name']);
 		$result->execute();
 
 		echo("<p> Value successfully inserted! </p>");

@@ -8,15 +8,14 @@
 	try {
 		require_once '../config.php';
 
-		$phone_number = $_GET['phone_number'];
-		$call_time    = $_GET['call_time'];
-		$person_name  = $_GET['person_name'];
-		$place        = $_GET['place_address'];
-
-		$sql = "INSERT INTO emergency_event
-			VALUES ({$phone_number}, '{$call_time}', '{$person_name}', '{$place}');";
+		$sql = "INSERT INTO emergency_event (phone_number, call_time, person_name, place_address)
+			VALUES (:number, :time, :name, :address);";
 
 		$result = $db->prepare($sql);
+		$result->bindParam(':number',  $_GET['phone_number']);
+		$result->bindParam(':time',    $_GET['call_time']);
+		$result->bindParam(':name',    $_GET['person_name']);
+		$result->bindParam(':address', $_GET['place_address']);
 		$result->execute();
 
 		echo("<p> Value successfully inserted! </p>");

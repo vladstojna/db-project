@@ -8,14 +8,13 @@
 	try {
 		require_once '../config.php';
 
-		$medium_number = $_GET['medium_number'];
-		$medium_name   = $_GET['medium_name'];
-		$entity_name   = $_GET['entity_name'];
-
-		$sql = "INSERT INTO medium
-			VALUES ({$medium_number}, '{$medium_name}', '{$entity_name}');";
+		$sql = "INSERT INTO medium (medium_number, medium_name, entity_name)
+			VALUES (:number, :name, :ename);";
 
 		$result = $db->prepare($sql);
+		$result->bindParam(':number', $_GET['medium_number']);
+		$result->bindParam(':name',   $_GET['medium_name']);
+		$result->bindParam(':ename',  $_GET['entity_name']);
 		$result->execute();
 
 		echo("<p> Value successfully inserted! </p>");

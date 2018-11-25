@@ -8,11 +8,10 @@
 	try {
 		require_once '../config.php';
 
-		$place = $_GET['place_address'];
-
-		$sql = "INSERT INTO place VALUES ('{$place}');";
+		$sql = "INSERT INTO place (place_address) VALUES (:address);";
 
 		$result = $db->prepare($sql);
+		$result->bindParams(':address', $_GET['place_address']);
 		$result->execute();
 
 		echo("<p> Value successfully inserted! </p>");

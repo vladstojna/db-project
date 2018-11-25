@@ -8,11 +8,10 @@
 	try {
 		require_once '../config.php';
 
-		$process_number = $_GET['rescue_process_number'];
-
-		$sql = "INSERT INTO rescue_process VALUES ('{$process_number}');";
+		$sql = "INSERT INTO rescue_process (rescue_process_number) VALUES (:number);";
 
 		$result = $db->prepare($sql);
+		$result->bindParam(':number', $_GET['rescue_process_number']);
 		$result->execute();
 
 		echo("<p> Value successfully inserted! </p>");
