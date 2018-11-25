@@ -1,31 +1,43 @@
-<html>
-	<head>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="../../css/style.css">
-	</head>
-	<body>
 <?php
-	try {
-		require_once '../config.php';
+	require '../config.php';
+	require '../functions.php';
 
-		$sql = "INSERT INTO place (place_address) VALUES (:address);";
+	if (isset($_GET['place_address'])) {
+		try {
+			$sql = "INSERT INTO place (place_address) VALUES (:address);";
 
-		$result = $db->prepare($sql);
-		$result->bindParam(':address', $_GET['place_address']);
-		$result->execute();
+			$result = $db->prepare($sql);
+			$result->bindParam(':address', $_GET['place_address']);
+			$result->execute();
 
-		echo("<p> Value successfully inserted! </p>");
-
-		echo("<a href=\"../action.php?table=place&action=insert\">~ Go back</a>");
-
-		$db = null;
-		
+			$status = "<p> Value successfully inserted! </p>";
+		}
+		catch (PDOException $e) {
+			$status = "<p>ERROR: {$e->getMessage()}</p>";
+		}
 	}
-	catch (PDOException $e) {
-		echo("<p>ERROR: {$e->getMessage()}</p>");
-		echo("<a href=\"../action.php?table=place&action=insert\">~ Retry</a>");
-	}
+
+	$table = print_table($db, "SELECT * FROM place;", "Places", ["place_address"]);
+	$db    = null;
 ?>
-	</body>
+
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+<body>
+
+<?php if (isset($status)) echo $status; ?>
+
+<form action="" method="GET">
+	<label for="in"> Place </label>
+	<input id="in" type="text" name="place_address" placeholder="Address...">
+	<input type="submit" value="Insert">
+</form>
+
+<?php if (isset($table)) echo $table; ?>
+
+</body>
 </html>
 

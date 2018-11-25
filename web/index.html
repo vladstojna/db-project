@@ -10,101 +10,87 @@
 		<h1>Project</h1>
 
 		<button class="collapsible">
-			<b> (a) </b> <i> Insert/Delete - </i>
-			Places,
-			Emergency Events,
-			Rescue Processes,
-			Mediums & Entities
+			<b> (a) </b> Insert/Delete...
 		</button>
 		<div class="content">
-			<form action="php/action.php" id="form1" method="GET">
-
-				<select name="table" form="form1">
-					<option value="place">           Place           </option>
-					<option value="emergency_event"> Emergency Event </option>
-					<option value="rescue_process">  Rescue Process  </option>
-					<option value="medium">          Medium          </option>
-					<option value="medium_entity">   Entity          </option>
-				</select>
-
-				<select name="action" form="form1">
-					<option value="insert"> Insert </option>
-					<option value="delete"> Delete </option>
-				</select>
-
-				<input type="submit" value="Submit">
-			</form>
+			<button class="collapsible"> Place </button>
+			<div class="content">
+				<button class="stripe" onclick="location.href='php/insert/place.php'"> Insert </button>
+				<button class="stripe" onclick="location.href='php/delete/place.php'"> Delete </button>
+			</div>
+			<button class="collapsible"> Emergency Event </button>
+			<div class="content">
+				<button class="stripe" onclick="location.href='php/insert/emergency_event.php'"> Insert </button>
+				<button class="stripe" onclick="location.href='php/delete/emergency_event.php'"> Delete </button>
+			</div>
+			<button class="collapsible"> Rescue Process </button>
+			<div class="content">
+				<button class="stripe" onclick="location.href='php/insert/rescue_process.php'"> Insert </button>
+				<button class="stripe" onclick="location.href='php/delete/rescue_process.php'"> Delete </button>
+			</div>
+			<button class="collapsible"> Medium </button>
+			<div class="content">
+				<button class="stripe" onclick="location.href='php/insert/medium.php'"> Insert </button>
+				<button class="stripe" onclick="location.href='php/delete/medium.php'"> Delete </button>
+			</div>
+			<button class="collapsible"> Entity </button>
+			<div class="content">
+				<button class="stripe" onclick="location.href='php/insert/medium_entity.php'"> Insert </button>
+				<button class="stripe" onclick="location.href='php/delete/medium_entity.php'"> Delete </button>
+			</div>
+		</div>
+		
+		<button class="collapsible">
+			<b> (b) </b> Insert/Edit/Delete...
+		</button>
+		<div class="content">
+			<button class="collapsible"> Combat Medium </button>
+			<div class="content">
+				<button class="stripe" onclick="location.href='php/insert/medium_combat.php'"> Insert </button>
+				<button class="stripe" onclick="location.href='php/update/medium_combat.php'"> Edit   </button>
+				<button class="stripe" onclick="location.href='php/delete/medium_combat.php'"> Delete </button>
+			</div>
+			<button class="collapsible"> Support Medium </button>
+			<div class="content">
+				<button class="stripe" onclick="location.href='php/insert/medium_support.php'"> Insert </button>
+				<button class="stripe" onclick="location.href='php/update/medium_support.php'"> Edit   </button>
+				<button class="stripe" onclick="location.href='php/delete/medium_support.php'"> Delete </button>
+			</div>
+			<button class="collapsible"> Rescue Medium </button>
+			<div class="content">
+				<button class="stripe" onclick="location.href='php/insert/medium_rescue.php'"> Insert </button>
+				<button class="stripe" onclick="location.href='php/update/medium_rescue.php'"> Edit   </button>
+				<button class="stripe" onclick="location.href='php/delete/medium_rescue.php'"> Delete </button>
+			</div>
 		</div>
 
 		<button class="collapsible">
-			<b> (b) </b> <i> Insert/Edit/Remove - </i>
-			Combat, Support & Rescue mediums
+			<b> (c) </b> List...
 		</button>
 		<div class="content">
-			<form action="php/action.php" id="form2">
-
-				<select name="table" form="form2" method="GET">
-					<option value="medium_combat">  Combat Medium  </option>
-					<option value="medium_support"> Support Medium </option>
-					<option value="medium_rescue">  Rescue Medium  </option>
-				</select>
-
-				<select name="action" form="form2">
-					<option value="insert"> Insert </option>
-					<option value="edit">   Edit   </option>
-					<option value="delete"> Delete </option>
-				</select>
-
-				<input type="submit" value="Submit">
-			</form>
-		</div>
-
-		<button class="collapsible">
-			<b> (c) </b> <i> List - </i>
-			Rescue Processes & Mediums
-		</button>
-		<div class="content">
-			<form action="php/action.php" id="form3" method="GET">
-
-				<label for="listings"> List </label>
-				<select id="listings" name="table" form="form3">
-					<option value="rescue_process"> Rescue Processes </option>
-					<option value="medium">         Mediums          </option>
-				</select>
-				
-				<input type="hidden" name="action" value="list">
-				<input type="submit" value="Submit">
-			</form>
+			<button class="collapsible" onclick="location.href='php/list/rescue_process.php'"> Rescue Processes </button>
+			<div class="content"></div>
+			<button class="collapsible" onclick="location.href='php/list/medium.php'"> Mediums </button>
+			<div class="content"></div>
 		</div>
 
 		<button class="collapsible" >
-			<b> (d) </b> <i> Associate - </i>
-			Rescue Processes to mediums & emergency events
+			<b> (d) </b> Associate Rescue Processes...
 		</button>
 		<div class="content">
-			<form action="php/action.php" id="form4">
-
-				<label for="candidate"> Associate Rescue Process to </label>
-				<select id="candidate" name="table" form="form4" method="GET">
-					<option value="medium">          Medium  </option>
-					<option value="emergency_event"> Emergency Event </option>
-				</select>
-
-				<input type="hidden" name="action" value="associate">
-				<input type="submit" value="Submit">
-			</form>
+			<button class="collapsible" onclick="location.href='php/assoc/rescue_process.php'"> to an emergency event </button>
+			<div class="content"></div>
+			<button class="collapsible" onclick="location.href='php/assoc/medium.php'"> to a medium </button>
+			<div class="content"></div>
 		</div>
 
-		<button class="collapsible" onclick="location.href='php/rp_getmedium.php'">
-			<b> (e) </b> <i> List - </i>
-			mediums triggered by a specific rescue process
+		<button class="collapsible" onclick="location.href='php/list/rp_getmedium.php'">
+			<b> (e) </b> List mediums triggered by a specific rescue process
 		</button>
 		<div class="content"></div>
 		
-		<button class="collapsible" onclick="location.href='php/places_getmedium.php'">
-			<b> (f) </b> <i> List - </i>
-			Rescue Mediums triggered by rescue processes
-			that were originated in a specific place
+		<button class="collapsible" onclick="location.href='php/list/places_getmedium.php'">
+			<b> (f) </b> List rescue mediums triggered by rescue processes originated in a specific place
 		</button>
 		<div class="content"></div>
 

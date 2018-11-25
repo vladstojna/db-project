@@ -1,31 +1,40 @@
-<html>
-	<head>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="../../css/style.css">
-	</head>
-	<body>
+
 <?php
-	try {
-		require_once '../config.php';
+	require '../config.php';
+	require '../functions.php';
 
-		$sql = "DELETE FROM place WHERE place_address = :address;";
+	if (isset($_GET['place_address'])) {
+		try {
+			$sql = "DELETE FROM place WHERE place_address = :address;";
 
-		$result = $db->prepare($sql);
-		$result->bindParam(':address', $_GET['place_address']);
-		$result->execute();
-
-		echo("<p> Value successfully deleted! </p>");
-
-		echo("<a href=\"../action.php?table=place&action=delete\">~ Go back</a>");
-
-		$db = null;
-		
+			$result = $db->prepare($sql);
+			$result->bindParam(':address', $_GET['place_address']);
+			$result->execute();
+			
+			$status = "<p> Value successfully deleted! </p>";
+		}
+		catch (PDOException $e) {
+			$status = "<p>ERROR: {$e->getMessage()}</p>";
+		}
 	}
-	catch (PDOException $e) {
-		echo("<p>ERROR: {$e->getMessage()}</p>");
-		echo("<a href=\"../action.php?table=place&action=delete\">~ Retry</a>");
-	}
+
+	$table = print_table($db, "SELECT * FROM place;", "Places", ["place_address"],
+			"place.php", ["place_address"], "Delete");
+	$db    = null;
 ?>
-	</body>
+
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+<body>
+
+<a href="../../index.html"> ~ Back </a>
+
+<?php if (isset($status)) echo $status ?>
+<?php if (isset($table)) echo $table ?>
+
+</body>
 </html>
 

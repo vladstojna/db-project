@@ -1,31 +1,43 @@
-<html>
-	<head>
-		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-		<link rel="stylesheet" type="text/css" href="../../css/style.css">
-	</head>
-	<body>
 <?php
-	try {
-		require_once '../config.php';
+	require '../config.php';
+	require '../functions.php';
 
-		$sql = "INSERT INTO medium_entity (entity_name) VALUES (:name);";
+	if (isset($_GET['entity_name'])) {
+		try {
+			$sql = "INSERT INTO medium_entity (entity_name) VALUES (:name);";
 
-		$result = $db->prepare($sql);
-		$result->bindParam(':name', $_GET['entity_name']);
-		$result->execute();
+			$result = $db->prepare($sql);
+			$result->bindParam(':name', $_GET['entity_name']);
+			$result->execute();
 
-		echo("<p> Value successfully inserted! </p>");
-
-		echo("<a href=\"../action.php?table=medium_entity&action=insert\">~ Go back</a>");
-
-		$db = null;
-		
+			$status = "<p> Value successfully inserted! </p>";
+		}
+		catch (PDOException $e) {
+			$status = "<p>ERROR: {$e->getMessage()}</p>";
+		}
 	}
-	catch (PDOException $e) {
-		echo("<p>ERROR: {$e->getMessage()}</p>");
-		echo("<a href=\"../action.php?table=medium_entity&action=insert\">~ Retry</a>");
-	}
+
+	$table = print_table($db, "SELECT * FROM medium_entity;", "Entities", ["entity_name"]);
+	$db    = null;
 ?>
-	</body>
+
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+<body>
+
+<?php if (isset($status)) echo $status; ?>
+
+<form action=""  method="GET">
+	<label for="in"> Entity </label>
+	<input id="in" type="text" name="entity_name" placeholder="Name...">
+	<input type="submit" value="Insert">
+</form>
+
+<?php if (isset($table)) echo $table; ?>
+
+</body>
 </html>
 
