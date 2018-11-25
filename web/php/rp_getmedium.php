@@ -12,7 +12,7 @@
 		$sql = "SELECT rescue_process_number FROM rescue_process;";
 
 		print_table($db, $sql, "Rescue Processes", ["rescue_process_number"],
-			"triggered.php", "rescue_process_number", "Get Triggered Mediums");
+			"triggered.php", ["rescue_process_number"], "Get Triggered Mediums");
 
 		echo("<a href=\"../index.html\">~ Go back</a>");
 

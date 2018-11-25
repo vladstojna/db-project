@@ -13,7 +13,7 @@
 				FROM emergency_event NATURAL INNER JOIN triggers;";
 
 		print_table($db, $sql, "Rescue Mediums", ["place_address"],
-			"triggered_rm.php", "place_address", "Get Rescue Mediums");
+			"triggered_rm.php", ["place_address"], "Get Rescue Mediums");
 
 		echo("<a href=\"../index.html\">~ Go back</a>");
 
