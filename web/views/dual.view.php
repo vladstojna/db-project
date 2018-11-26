@@ -7,6 +7,10 @@
 
 <a href="../../index.html"> ~ Back </a>
 
+<?php if (isset($status)) { ?>
+	<p> <?=$status?> </p>
+<?php } ?>
+
 <?php table($helper) ?>
 
 <?php table($result) ?>
