@@ -10,6 +10,11 @@ body {
 	font-family: 'Montserrat', sans-serif;
 }
 
+a {
+	display: inline-block;
+	margin-bottom: 16pt;
+}
+
 a:link {
 	color: #7ca8ef;
 }
@@ -20,22 +25,32 @@ a:visited {
 
 th {
 	font-weight: bold;
-	padding: 12pt;
+	font-size: 12pt;
+	padding: 6pt 8pt;
 }
 
 td {
-	padding: 8pt;
+	font-size: 11pt;
+	text-align: center;
+	padding: 6pt 8pt;
 }
 
-form > * {
-	font-size: 14pt;
+form {
+	margin: 0px;
+}
+
+input {
+	font-size: 11pt;
+}
+
+label {
+	font-size: 12pt;
 }
 
 input[type=submit], select {
-	padding: 6pt;
-	margin: 12pt 8pt;
+	padding: 2pt 6pt;
 	display: inline-block;
-	border: 0px;
+	border: none;
 	border-radius: 5px;
 	box-sizing: border-box;
 }
@@ -69,7 +84,7 @@ input[type=submit]:hover {
 }
 
 .content {
-	padding: 0 20pt 0pt 20pt;
+	padding: 0 0 0 20pt;
 	display: none;
 	overflow: hidden;
 	background-color: #5a5a5a;
