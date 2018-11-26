@@ -17,8 +17,6 @@ if (isset($_GET['entity_name'])) {
 	}
 }
 
-require 'medium_entity.table.php';
-
-require 'table.view.php';
-require 'medium_entity.view.php';
+require '../../tables/medium_entity.table.php';
+require '../../view/insert/medium_entity.view.php';
 

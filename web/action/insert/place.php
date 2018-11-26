@@ -17,7 +17,7 @@ if (isset($_GET['place_address'])) {
 	}
 }
 
-require '../tables/place.table.php';
+include '../../tables/place.table.php';
+include '../../views/insert/place.view.php';
 
-view('insert/place.view.php');
 

@@ -1,6 +1,6 @@
 <?php
 
-require '../config.php';
+require '../../common/init.php';
 
 if (isset($_GET['rescue_process_number'])) {
 	try {
@@ -17,8 +17,6 @@ if (isset($_GET['rescue_process_number'])) {
 	}
 }
 
-require 'rescue_process.table.php';
-
-require 'table.view.php';
-require 'rescue_process.view.php';
+include '../../tables/rescue_process.table.php';
+include '../../views/insert/rescue_process.view.php';
 

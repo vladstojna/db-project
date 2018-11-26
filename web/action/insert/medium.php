@@ -1,6 +1,6 @@
 <?php
 
-require '../config.php';
+require '../../common/init.php';
 
 if (isset($_GET['medium_number']) &&
 	isset($_GET['medium_name'])   &&
@@ -22,8 +22,6 @@ if (isset($_GET['medium_number']) &&
 	}
 }
 
-require 'medium.table.php';
-
-require 'table.view.php';
-require 'medium.view.php';
+include '../../tables/medium.table.php';
+include '../../views/insert/medium.view.php';
 

@@ -1,6 +1,6 @@
 <?php
 
-require '../config.php';
+require '../../common/init.php';
 
 if (isset($_GET['phone_number']) &&
 	isset($_GET['call_time'])    &&
@@ -24,8 +24,6 @@ if (isset($_GET['phone_number']) &&
 	}
 }
 
-require 'emergency_event.table.php';
-
-require 'table.view.php';
-require 'place.view.php';
+require '../../tables/emergency_event.table.php';
+require '../../views/insert/emergency_event.view.php';
 
