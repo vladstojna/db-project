@@ -1,22 +1,10 @@
 <?php
-	require '../config.php';
-	require '../functions.php';
 
-	$table = print_table($db, "SELECT * FROM rescue_process;", "Rescue Processes", ["rescue_process_number"]);
-	$db    = null;
-?>
+require '../../common/init.php';
 
-<html>
-<head>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../../css/style.css">
-</head>
-<body>
+$table = table_params(query("SELECT * FROM rescue_process;"), "Rescue Processes",
+	["rescue_process_number"]
+);
 
-<a href="../../index.html"> ~ Back </a>
-
-<?php if (isset($table)) echo $table; ?>
-
-</body>
-</html>
+include '../../views/simple.view.php';
 
