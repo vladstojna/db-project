@@ -1,40 +1,23 @@
-
 <?php
-	require '../config.php';
-	require '../functions.php';
 
-	if (isset($_GET['place_address'])) {
-		try {
-			$sql = "DELETE FROM place WHERE place_address = :address;";
+require '../../common/init.php';
 
-			$result = $db->prepare($sql);
-			$result->bindParam(':address', $_GET['place_address']);
-			$result->execute();
-			
-			$status = "<p> Value successfully deleted! </p>";
-		}
-		catch (PDOException $e) {
-			$status = "<p>ERROR: {$e->getMessage()}</p>";
-		}
+if (isset($_GET['place_address'])) {
+	try {
+		$sql = "DELETE FROM place WHERE place_address = :address;";
+
+		$result = prepare($sql);
+		$result->bindParam(':address', $_GET['place_address']);
+		$result->execute();
+
+		$status = "Value successfully deleted!";
 	}
+	catch (PDOException $e) {
+		$status = "ERROR: {$e->getMessage()}";
+	}
+}
 
-	$table = print_table($db, "SELECT * FROM place;", "Places", ["place_address"],
-			"place.php", ["place_address"], "Delete");
-	$db    = null;
-?>
+$table = table_params(query("SELECT * FROM place;"), "Places", ["place_address"], ["place_address"]);
 
-<html>
-<head>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../../css/style.css">
-</head>
-<body>
-
-<a href="../../index.html"> ~ Back </a>
-
-<?php if (isset($status)) echo $status ?>
-<?php if (isset($table)) echo $table ?>
-
-</body>
-</html>
+include '../../views/simple.view.php';
 
