@@ -17,6 +17,9 @@ if (isset($_GET['rescue_process_number'])) {
 	}
 }
 
-include '../../tables/rescue_process.table.php';
+$table = table_params(query("SELECT * FROM rescue_process;"), "Rescue Processes",
+	["rescue_process_number"]
+);
+
 include '../../views/insert/rescue_process.view.php';
 

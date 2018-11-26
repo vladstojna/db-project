@@ -1,6 +1,6 @@
 <?php
 
-require '../config.php';
+require '../../common/init.php';
 
 if (isset($_GET['entity_name'])) {
 	try {
@@ -17,6 +17,7 @@ if (isset($_GET['entity_name'])) {
 	}
 }
 
-require '../../tables/medium_entity.table.php';
-require '../../view/insert/medium_entity.view.php';
+$table = table_params(query("SELECT * FROM medium_entity;"), "Entities", ["entity_name"]);
+
+include '../../views/insert/medium_entity.view.php';
 

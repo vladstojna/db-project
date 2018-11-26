@@ -22,6 +22,9 @@ if (isset($_GET['medium_number']) &&
 	}
 }
 
-include '../../tables/medium.table.php';
+$table = table_params(query("SELECT * FROM medium;"), "Mediums",
+	["medium_number", "medium_name", "entity_name"]
+);
+
 include '../../views/insert/medium.view.php';
 
