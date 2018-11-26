@@ -10,10 +10,10 @@
 			$result->bindParam(':address', $_GET['place_address']);
 			$result->execute();
 
-			$status = "<p> Value successfully inserted! </p>";
+			$status = "Value successfully inserted!";
 		}
 		catch (PDOException $e) {
-			$status = "<p>ERROR: {$e->getMessage()}</p>";
+			$status = "ERROR: {$e->getMessage()}";
 		}
 	}
 
@@ -28,11 +28,14 @@
 </head>
 <body>
 
-<?php if (isset($status)) echo $status; ?>
+<a href="../../index.html"> ~ Back </a>
+
+<?php if (isset($status)) ?>
+	<p> <?=$status?> </p>
 
 <form action="" method="GET">
 	<label for="in"> Place </label>
-	<input id="in" type="text" name="place_address" placeholder="Address...">
+	<input id="in" type="text" name="place_address" placeholder="Address..." required>
 	<input type="submit" value="Insert">
 </form>
 

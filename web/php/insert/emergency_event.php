@@ -17,10 +17,10 @@
 			$result->bindParam(':address', $_GET['place_address']);
 			$result->execute();
 
-			$status = "<p> Value successfully inserted! </p>";
+			$status = "Value successfully inserted!";
 		}
 		catch (PDOException $e) {
-			$status = "<p>ERROR: {$e->getMessage()}</p>";
+			$status = "ERROR: {$e->getMessage()}";
 		}
 	}
 	$columns = ["phone_number", "call_time", "person_name", "place_address", "rescue_process_number"];
@@ -35,21 +35,24 @@
 </head>
 <body>
 
-<?php if (isset($status)) echo $status; ?>
+<a href="../../index.html"> ~ Back </a>
+
+<?php if (isset($status)) ?>
+	<p> <?=$status?> </p>
 
 <form action="" method="GET">
 
 	<label for="phoneInput"> Phone Number </label>
-	<input id="phoneInput" type="text" name="phone_number" placeholder="e.g. 912345678">
+	<input id="phoneInput" type="text" name="phone_number" placeholder="e.g. 912345678" required>
 
 	<label for="timeInput"> Call Time </label>
-	<input id="timeInput" type="text" name="call_time" placeholder="HH:MM:SS">
+	<input id="timeInput" type="text" name="call_time" placeholder="HH:MM:SS" required>
 
 	<label for="nameInput"> Caller </label>
-	<input id="nameInput" type="text" name="person_name" placeholder="Name...">
+	<input id="nameInput" type="text" name="person_name" placeholder="Name..." required>
 
 	<label for"placeInput"> Place </label>
-	<input id="placeInput" type="text" name="place_address" placeholder="Address">
+	<input id="placeInput" type="text" name="place_address" placeholder="Address" required>
 
 	<input type="submit" value="Insert">
 </form>
