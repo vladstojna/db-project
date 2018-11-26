@@ -2,15 +2,15 @@
 
 --------------------------------------------------------------------------
 
-INSERT INTO camera VALUES (1);
-INSERT INTO camera VALUES (2);
-INSERT INTO camera VALUES (3);
-INSERT INTO camera VALUES (4);
-INSERT INTO camera VALUES (5);
-INSERT INTO camera VALUES (6);
-INSERT INTO camera VALUES (7);
-INSERT INTO camera VALUES (8);
-INSERT INTO camera VALUES (9);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
 
 INSERT INTO video VALUES ('2018-11-01 01:15:20', '2018-11-01 01:20:20', 1);
 INSERT INTO video VALUES ('2018-11-02 02:15:20', '2018-11-02 02:20:20', 2);
@@ -59,12 +59,12 @@ INSERT INTO emergency_event VALUES (910123457, '2018-11-07 17:05:00', 'Person 7'
 INSERT INTO emergency_event VALUES (910123458, '2018-11-08 18:05:00', 'Person 8', 'Place 8', null);
 INSERT INTO emergency_event VALUES (910123459, '2018-11-09 19:05:00', 'Person 9', 'Place 9', null);
 
-INSERT INTO rescue_process VALUES (1);
-INSERT INTO rescue_process VALUES (2);
-INSERT INTO rescue_process VALUES (3);
-INSERT INTO rescue_process VALUES (4);
-INSERT INTO rescue_process VALUES (5);
-INSERT INTO rescue_process VALUES (6);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
 
 --------------------------------------------------------------------------
 
@@ -73,18 +73,18 @@ INSERT INTO medium_entity VALUES ('Army Entity');
 INSERT INTO medium_entity VALUES ('Firefighter Entity');
 INSERT INTO medium_entity VALUES ('Ambulance Entity');
 
-INSERT INTO medium VALUES (1, 'Police Vehicle Type 1',      'Police Entity');
-INSERT INTO medium VALUES (2, 'Police Vehicle Type 2',      'Police Entity');
-INSERT INTO medium VALUES (3, 'Police Vehicle Type 3',      'Police Entity');
-INSERT INTO medium VALUES (1, 'Army Vehicle Type 1',        'Army Entity');
-INSERT INTO medium VALUES (2, 'Army Vehicle Type 2',        'Army Entity');
-INSERT INTO medium VALUES (3, 'Army Vehicle Type 3',        'Army Entity');
-INSERT INTO medium VALUES (1, 'Firefighter Vehicle Type 1', 'Firefighter Entity');
-INSERT INTO medium VALUES (2, 'Firefighter Vehicle Type 2', 'Firefighter Entity');
-INSERT INTO medium VALUES (3, 'Firefighter Vehicle Type 3', 'Firefighter Entity');
-INSERT INTO medium VALUES (1, 'Ambulance Vehicle Type 1',   'Ambulance Entity');
-INSERT INTO medium VALUES (2, 'Ambulance Vehicle Type 2',   'Ambulance Entity');
-INSERT INTO medium VALUES (3, 'Ambulance Vehicle Type 3',   'Ambulance Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Police Vehicle Type 1',      'Police Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Police Vehicle Type 2',      'Police Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Police Vehicle Type 3',      'Police Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Army Vehicle Type 1',        'Army Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Army Vehicle Type 2',        'Army Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Army Vehicle Type 3',        'Army Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Firefighter Vehicle Type 1', 'Firefighter Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Firefighter Vehicle Type 2', 'Firefighter Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Firefighter Vehicle Type 3', 'Firefighter Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Ambulance Vehicle Type 1',   'Ambulance Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Ambulance Vehicle Type 2',   'Ambulance Entity');
+INSERT INTO medium VALUES (DEFAULT, 'Ambulance Vehicle Type 3',   'Ambulance Entity');
 
 INSERT INTO medium_combat VALUES (1, 'Police Entity');
 INSERT INTO medium_combat VALUES (2, 'Police Entity');
