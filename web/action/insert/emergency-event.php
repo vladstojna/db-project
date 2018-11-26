@@ -28,5 +28,5 @@ $table = table_params(query("SELECT * FROM emergency_event"), "Emergency Events"
 	["phone_number", "call_time", "person_name", "place_address", "rescue_process_number"]
 );
 
-require '../../views/insert/emergency_event.view.php';
+require '../../views/insert/emergency-event.view.php';
 
