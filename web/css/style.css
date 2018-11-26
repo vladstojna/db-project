@@ -1,13 +1,16 @@
 /* style */
 
 body {
-	margin: 100px;
+	margin: 50px;
 	background-color: #1f1f1f;
 	color: #eeeeee;
-	/*overflow: hidden;*/
 	font-weight: normal;
 	font-size: 16pt;
 	font-family: 'Montserrat', sans-serif;
+}
+
+#wrapper {
+	width: 400px;
 }
 
 a {
