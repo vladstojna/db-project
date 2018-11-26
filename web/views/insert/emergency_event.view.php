@@ -28,7 +28,7 @@
 	<input type="submit" value="Insert">
 </form>
 
-<?php table($result, $title, $columns) ?>
+<?php table($table) ?>
 
 </body>
 </html>
