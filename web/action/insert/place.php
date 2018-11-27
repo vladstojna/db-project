@@ -19,5 +19,5 @@ if (isset($_GET['place_address'])) {
 
 $table = table_params(query("SELECT * FROM place;"), "Places", ["place_address"]);
 
-include '../../views/insert/place.view.php';
+include view('insert/place.view.php');
 

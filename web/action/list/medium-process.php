@@ -25,5 +25,5 @@ $helper = table_params(
 	["rescue_process_number"]
 );
 
-include '../../views/dual.view.php';
+include view('dual.view.php');
 

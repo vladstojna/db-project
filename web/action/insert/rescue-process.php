@@ -21,5 +21,5 @@ $table = table_params(query("SELECT * FROM rescue_process;"), "Rescue Processes"
 	["rescue_process_number"]
 );
 
-include '../../views/insert/rescue-process.view.php';
+include view('insert/rescue-process.view.php';
 

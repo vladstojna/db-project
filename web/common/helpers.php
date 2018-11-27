@@ -1,6 +1,8 @@
 <?php
 
-function include_view($file) {
-	include __DIR__.'/../views/'.$file;
+define("ROOT_DIR", __DIR__.'/..');
+
+function view($file) {
+	return ROOT_DIR . '/views/' . $file;
 }
 

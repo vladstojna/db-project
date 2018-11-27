@@ -21,5 +21,5 @@ $table = table_params(query("SELECT * FROM medium_entity;"), "Entities", ["entit
 	["entity_name"]
 );
 
-include '../../views/simple.view.php';
+include view('simple.view.php');
 

@@ -27,5 +27,5 @@ $sql = "SELECT DISTINCT place_address
 
 $helper = table_params(query($sql), "Places", ["place_address"], ["place_address"]);
 
-include '../../views/dual.view.php';
+include view('dual.view.php');
 

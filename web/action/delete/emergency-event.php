@@ -23,5 +23,5 @@ $table = table_params(query("SELECT * FROM emergency_event"), "Emergency Events"
 	["phone_number", "call_time"]
 );
 
-require '../../views/simple.view.php';
+include view('simple.view.php');
 

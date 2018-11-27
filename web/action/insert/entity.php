@@ -19,5 +19,5 @@ if (isset($_GET['entity_name'])) {
 
 $table = table_params(query("SELECT * FROM medium_entity;"), "Entities", ["entity_name"]);
 
-include '../../views/insert/entity.view.php';
+include view('insert/entity.view.php');
 

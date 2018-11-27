@@ -38,5 +38,5 @@ $result = table_params(
 	["medium_number", "medium_name", "entity_name"]
 );
 
-include '../../views/dual.view.php';
+include view('dual.view.php');
 

@@ -27,5 +27,5 @@ $table = table_params(
 	["medium_number", "entity_name"]
 );
 
-include '../../views/simple.view.php';
+include view('simple.view.php');
 
