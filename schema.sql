@@ -221,7 +221,7 @@ CREATE TABLE audits(
 		REFERENCES coordinator(coordinator_id) ON DELETE CASCADE,
 
 	CHECK (date_time_start < date_time_end),
-	CHECK (audition_date >= current_date)
+	CHECK (audition_date <= current_date)
 );
 
 CREATE TABLE requests(
@@ -237,3 +237,4 @@ CREATE TABLE requests(
 	FOREIGN KEY (video_date_time_start, camera_id)
 		REFERENCES video(date_time_start, camera_id) ON DELETE CASCADE
 );
+
