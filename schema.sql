@@ -29,7 +29,7 @@ DROP TABLE IF EXISTS requests CASCADE;
 --------------------------------------------------------------------------
 
 CREATE TABLE camera(
-	camera_id INTEGER NOT NULL,
+	camera_id SERIAL NOT NULL,
 
 	PRIMARY KEY (camera_id)
 );
@@ -78,14 +78,14 @@ CREATE TABLE lookout(
 --------------------------------------------------------------------------
 
 CREATE TABLE rescue_process(
-	rescue_process_number INTEGER NOT NULL,
+	rescue_process_number SERIAL NOT NULL,
 
 	PRIMARY KEY (rescue_process_number)
 );
 
 CREATE TABLE emergency_event(
 	phone_number          NUMERIC(9, 0) NOT NULL,
-	call_time             TIME(0)       NOT NULL,
+	call_time             TIMESTAMP(0)       NOT NULL,
 	person_name           VARCHAR(80)   NOT NULL,
 	place_address         VARCHAR(255)  NOT NULL,
 	rescue_process_number INTEGER,
@@ -93,9 +93,9 @@ CREATE TABLE emergency_event(
 	PRIMARY KEY (phone_number, call_time),
 
 	FOREIGN KEY (rescue_process_number)
-		REFERENCES rescue_process(rescue_process_number),
+		REFERENCES rescue_process(rescue_process_number) ON DELETE CASCADE,
 	FOREIGN KEY (place_address)
-		REFERENCES place(place_address),
+		REFERENCES place(place_address) ON DELETE CASCADE,
 
 	UNIQUE (phone_number, person_name),
 
@@ -216,7 +216,7 @@ CREATE TABLE audits(
 
 	FOREIGN KEY (medium_number, entity_name, rescue_process_number)
 		REFERENCES triggers(medium_number, entity_name, rescue_process_number)
-		ON DELETE CASCADE,
+			ON DELETE CASCADE,
 	FOREIGN KEY (coordinator_id)
 		REFERENCES coordinator(coordinator_id) ON DELETE CASCADE,
 

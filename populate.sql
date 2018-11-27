@@ -2,15 +2,15 @@
 
 --------------------------------------------------------------------------
 
-INSERT INTO camera VALUES (1);
-INSERT INTO camera VALUES (2);
-INSERT INTO camera VALUES (3);
-INSERT INTO camera VALUES (4);
-INSERT INTO camera VALUES (5);
-INSERT INTO camera VALUES (6);
-INSERT INTO camera VALUES (7);
-INSERT INTO camera VALUES (8);
-INSERT INTO camera VALUES (9);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
+INSERT INTO camera VALUES (DEFAULT);
 
 INSERT INTO video VALUES ('2018-11-01 01:15:20', '2018-11-01 01:20:20', 1);
 INSERT INTO video VALUES ('2018-11-02 02:15:20', '2018-11-02 02:20:20', 2);
@@ -59,12 +59,12 @@ INSERT INTO emergency_event VALUES (910123457, '2018-11-07 17:05:00', 'Person 7'
 INSERT INTO emergency_event VALUES (910123458, '2018-11-08 18:05:00', 'Person 8', 'Place 8', null);
 INSERT INTO emergency_event VALUES (910123459, '2018-11-09 19:05:00', 'Person 9', 'Place 9', null);
 
-INSERT INTO rescue_process VALUES (1);
-INSERT INTO rescue_process VALUES (2);
-INSERT INTO rescue_process VALUES (3);
-INSERT INTO rescue_process VALUES (4);
-INSERT INTO rescue_process VALUES (5);
-INSERT INTO rescue_process VALUES (6);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
+INSERT INTO rescue_process VALUES (DEFAULT);
 
 --------------------------------------------------------------------------
 
