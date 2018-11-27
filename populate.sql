@@ -71,15 +71,15 @@ INSERT INTO emergency_event VALUES (960123456, '2018-11-06 16:05:00', 'Person 6'
 INSERT INTO rescue_process VALUES (DEFAULT);
 UPDATE emergency_event SET rescue_process_number = 1 WHERE phone_number = 910123454 AND call_time = '2018-11-04 14:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
-UPDATE emergency_event SET rescue_process_number = 2 WHERE phone_number = 910123454 AND call_time = '2018-11-04 15:05:00';
+UPDATE emergency_event SET rescue_process_number = 2 WHERE phone_number = 910123455 AND call_time = '2018-11-05 15:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
-UPDATE emergency_event SET rescue_process_number = 3 WHERE phone_number = 910123454 AND call_time = '2018-11-04 16:05:00';
+UPDATE emergency_event SET rescue_process_number = 3 WHERE phone_number = 910123456 AND call_time = '2018-11-06 16:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
-UPDATE emergency_event SET rescue_process_number = 4 WHERE phone_number = 910123454 AND call_time = '2018-11-04 17:05:00';
+UPDATE emergency_event SET rescue_process_number = 4 WHERE phone_number = 910123457 AND call_time = '2018-11-07 17:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
-UPDATE emergency_event SET rescue_process_number = 5 WHERE phone_number = 910123454 AND call_time = '2018-11-04 18:05:00';
+UPDATE emergency_event SET rescue_process_number = 5 WHERE phone_number = 910123458 AND call_time = '2018-11-08 18:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
-UPDATE emergency_event SET rescue_process_number = 6 WHERE phone_number = 910123454 AND call_time = '2018-11-04 19:05:00';
+UPDATE emergency_event SET rescue_process_number = 6 WHERE phone_number = 910123459 AND call_time = '2018-11-09 19:05:00';
 
 --------------------------------------------------------------------------
 
