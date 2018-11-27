@@ -2,20 +2,117 @@
 <html>
 	<head>
 		<title> db-project </title>
-		<meta charset="utf-8">
-
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 
 	<body>
-		<p>a)</p>
-		<p>Insert place</p>
+		<h1>Project</h1>
 
-			<form action='scritp1.php' method='post'>
-				<p><input type='hidden' name='action' value='add'></p>
-				<p><input type='hidden' name='table' value='place'></p>
-				<p>place address: <input type='text' name='place_address'></p>
-				<p><input type='submit' value='Submit'></p>
-			</form>
+		<div id="wrapper">
+
+			<button class="collapsible">
+				<b> (a) </b> Insert/Delete...
+			</button>
+			<div class="content">
+				<button class="collapsible"> Place </button>
+				<div class="content">
+					<button class="stripe" onclick="location.href='action/insert/place.php'"> Insert </button>
+					<button class="stripe" onclick="location.href='action/delete/place.php'"> Delete </button>
+				</div>
+				<button class="collapsible"> Emergency Event </button>
+				<div class="content">
+					<button class="stripe" onclick="location.href='action/insert/emergency-event.php'"> Insert </button>
+					<button class="stripe" onclick="location.href='action/delete/emergency-event.php'"> Delete </button>
+				</div>
+				<button class="collapsible"> Rescue Process </button>
+				<div class="content">
+					<button class="stripe" onclick="location.href='action/insert/rescue-process.php'"> Insert </button>
+					<button class="stripe" onclick="location.href='action/delete/rescue-process.php'"> Delete </button>
+				</div>
+				<button class="collapsible"> Medium </button>
+				<div class="content">
+					<button class="stripe" onclick="location.href='action/insert/medium.php'"> Insert </button>
+					<button class="stripe" onclick="location.href='action/delete/medium.php'"> Delete </button>
+				</div>
+				<button class="collapsible"> Entity </button>
+				<div class="content">
+					<button class="stripe" onclick="location.href='action/insert/entity.php'"> Insert </button>
+					<button class="stripe" onclick="location.href='action/delete/entity.php'"> Delete </button>
+				</div>
+			</div>
+			
+			<button class="collapsible">
+				<b> (b) </b> Insert/Edit/Delete...
+			</button>
+			<div class="content">
+				<button class="collapsible"> Combat Medium </button>
+				<div class="content">
+					<button class="stripe" onclick="location.href='action/insert/medium-combat.php'"> Insert </button>
+					<button class="stripe" onclick="location.href='action/update/medium-combat.php'"> Edit   </button>
+					<button class="stripe" onclick="location.href='action/delete/medium-combat.php'"> Delete </button>
+				</div>
+				<button class="collapsible"> Support Medium </button>
+				<div class="content">
+					<button class="stripe" onclick="location.href='action/insert/medium-support.php'"> Insert </button>
+					<button class="stripe" onclick="location.href='action/update/medium-support.php'"> Edit   </button>
+					<button class="stripe" onclick="location.href='action/delete/medium-support.php'"> Delete </button>
+				</div>
+				<button class="collapsible"> Rescue Medium </button>
+				<div class="content">
+					<button class="stripe" onclick="location.href='action/insert/medium-rescue.php'"> Insert </button>
+					<button class="stripe" onclick="location.href='action/update/medium-rescue.php'"> Edit   </button>
+					<button class="stripe" onclick="location.href='action/delete/medium-rescue.php'"> Delete </button>
+				</div>
+			</div>
+
+			<button class="collapsible">
+				<b> (c) </b> List...
+			</button>
+			<div class="content">
+				<button class="collapsible" onclick="location.href='action/list/rescue-process.php'"> Rescue Processes </button>
+				<div class="content"></div>
+				<button class="collapsible" onclick="location.href='action/list/medium.php'"> Mediums </button>
+				<div class="content"></div>
+			</div>
+
+			<button class="collapsible" >
+				<b> (d) </b> Associate Rescue Processes...
+			</button>
+			<div class="content">
+				<button class="collapsible" onclick="location.href='action/assoc/rescue-process.php'"> to an emergency event </button>
+				<div class="content"></div>
+				<button class="collapsible" onclick="location.href='action/assoc/medium.php'"> to a medium </button>
+				<div class="content"></div>
+			</div>
+
+			<button class="collapsible" onclick="location.href='action/list/medium-process.php'">
+				<b> (e) </b> List mediums triggered by a specific rescue process
+			</button>
+			<div class="content"></div>
+			
+			<button class="collapsible" onclick="location.href='action/list/medium-rescue-place.php'">
+				<b> (f) </b> List rescue mediums triggered by rescue processes originated in a specific place
+			</button>
+			<div class="content"></div>
+
+		</div>
+
+		<script>
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+				coll[i].addEventListener("click", function() {
+					this.classList.toggle("active");
+					var content = this.nextElementSibling;
+					if (content.style.display === "block")
+						content.style.display = "none";
+					else
+						content.style.display = "block";
+				});
+			}
+		</script>
 	</body>
 </html>
+

@@ -1,15 +1,110 @@
 /* style */
 
 body {
-	margin: 100px;
+	margin: 50px;
 	background-color: #1f1f1f;
-	color: #ffffff;
-	overflow: hidden;
+	color: #eeeeee;
 	font-weight: normal;
-	font-size: 12pt;
+	font-size: 16pt;
 	font-family: 'Montserrat', sans-serif;
 }
 
+#wrapper {
+	width: 400px;
+}
+
 a {
+	display: inline-block;
+	margin-bottom: 16pt;
+}
+
+a:link {
 	color: #7ca8ef;
 }
+
+a:visited {
+	color: #9282ff;
+}
+
+th {
+	font-weight: bold;
+	font-size: 12pt;
+	padding: 6pt 8pt;
+}
+
+td {
+	font-size: 11pt;
+	text-align: center;
+	padding: 6pt 8pt;
+}
+
+form {
+	margin: 0px;
+}
+
+input {
+	font-size: 11pt;
+}
+
+label {
+	font-size: 12pt;
+}
+
+input[type=submit], select {
+	padding: 2pt 6pt;
+	display: inline-block;
+	border: none;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+select {
+	background-color: #eeeeee;
+}
+
+input[type=submit] {
+	background-color: #7ca8ef;
+}
+
+input[type=submit]:hover {
+	background-color: #629bf7;
+}
+
+.collapsible {
+	background-color: #454545;
+	color: #eee;
+	cursor: pointer;
+	padding: 10pt;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 14pt;
+}
+
+.active, .collapsible:hover {
+	background-color: #5a5a5a;
+}
+
+.content {
+	padding: 0 0 0 20pt;
+	display: none;
+	overflow: hidden;
+	background-color: #5a5a5a;
+}
+
+.stripe {
+	background-color: #656565;
+	color: #eee;
+	padding: 10pt;
+	width: 100%;
+	border: none;
+	text-align: left;
+	outline: none;
+	font-size: 14pt;
+}
+
+.stripe:hover {
+	background-color: #808080;
+}
+
