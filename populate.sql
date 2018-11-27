@@ -58,13 +58,28 @@ INSERT INTO emergency_event VALUES (910123456, '2018-11-06 16:05:00', 'Person 6'
 INSERT INTO emergency_event VALUES (910123457, '2018-11-07 17:05:00', 'Person 7', 'Place 7', null);
 INSERT INTO emergency_event VALUES (910123458, '2018-11-08 18:05:00', 'Person 8', 'Place 8', null);
 INSERT INTO emergency_event VALUES (910123459, '2018-11-09 19:05:00', 'Person 9', 'Place 9', null);
+INSERT INTO emergency_event VALUES (920123454, '2018-11-04 14:05:00', 'Person 4', 'Place 4', null);
+INSERT INTO emergency_event VALUES (920123455, '2018-11-05 15:05:00', 'Person 5', 'Place 5', null);
+INSERT INTO emergency_event VALUES (920123456, '2018-11-06 16:05:00', 'Person 6', 'Place 6', null);
+INSERT INTO emergency_event VALUES (920123457, '2018-11-07 17:05:00', 'Person 7', 'Place 7', null);
+INSERT INTO emergency_event VALUES (920123458, '2018-11-08 18:05:00', 'Person 8', 'Place 8', null);
+INSERT INTO emergency_event VALUES (920123459, '2018-11-09 19:05:00', 'Person 9', 'Place 9', null);
+INSERT INTO emergency_event VALUES (960123454, '2018-11-04 14:05:00', 'Person 4', 'Place 4', null);
+INSERT INTO emergency_event VALUES (960123455, '2018-11-05 15:05:00', 'Person 5', 'Place 5', null);
+INSERT INTO emergency_event VALUES (960123456, '2018-11-06 16:05:00', 'Person 6', 'Place 6', null);
 
 INSERT INTO rescue_process VALUES (DEFAULT);
+UPDATE emergency_event SET rescue_process_number = 1 WHERE phone_number = 910123454 AND call_time = '2018-11-04 14:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
+UPDATE emergency_event SET rescue_process_number = 2 WHERE phone_number = 910123454 AND call_time = '2018-11-04 15:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
+UPDATE emergency_event SET rescue_process_number = 3 WHERE phone_number = 910123454 AND call_time = '2018-11-04 16:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
+UPDATE emergency_event SET rescue_process_number = 4 WHERE phone_number = 910123454 AND call_time = '2018-11-04 17:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
+UPDATE emergency_event SET rescue_process_number = 5 WHERE phone_number = 910123454 AND call_time = '2018-11-04 18:05:00';
 INSERT INTO rescue_process VALUES (DEFAULT);
+UPDATE emergency_event SET rescue_process_number = 6 WHERE phone_number = 910123454 AND call_time = '2018-11-04 19:05:00';
 
 --------------------------------------------------------------------------
 
@@ -134,14 +149,15 @@ INSERT INTO coordinator VALUES (4);
 
 INSERT INTO audits VALUES (
 	1, 1, 'Ambulance Entity', 3,
-	'2018-11-01 00:00:00', '2018-12-01 23:59:59', '2018-12-02', 'audition1_text'
+	'2018-11-01 00:00:00', '2018-11-01 23:59:59', CURRENT_DATE, 'audition1_text'
 );
 INSERT INTO audits VALUES (
 	2, 2, 'Ambulance Entity', 4,
-	'2018-11-15 00:00:00', '2018-12-15 23:59:59', '2018-12-16', 'audition2_text'
+	'2018-11-15 00:00:00', '2018-11-15 23:59:59', CURRENT_DATE, 'audition2_text'
 );
 
 INSERT INTO requests
 	VALUES (3, '2018-11-07 07:15:20', 7, '2018-11-12 16:15:20', '2018-11-12 16:20:20');
 INSERT INTO requests
 	VALUES (4, '2018-11-02 02:15:20', 2, '2018-11-07 18:15:20', '2018-11-07 18:20:20');
+
