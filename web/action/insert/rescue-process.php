@@ -2,24 +2,46 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['rescue_process_number'])) {
+if (isset($_GET['phone_number']) && isset($_GET['call_time'])) {
 	try {
-		$sql = "INSERT INTO rescue_process (rescue_process_number) VALUES (:number);";
 
-		$result = $db->prepare($sql);
-		$result->bindParam(':number', $_GET['rescue_process_number']);
-		$result->execute();
+		begin_transaction();
 
-		$status = "Value successfully inserted!";
+		query('INSERT INTO rescue_process (rescue_process_number) VALUES (DEFAULT);');
+
+		$res =
+			prepare('
+			UPDATE emergency_event
+			SET rescue_process_number = (
+				SELECT MAX(rescue_process_number)
+				FROM rescue_process)
+			WHERE phone_number = :number AND call_time = :time;'
+			);
+
+		$res->bindParam(':number', $_GET['phone_number']);
+		$res->bindParam(':time', $_GET['call_time']);
+		$res->execute();
+
+		commit();
+
+		$status = 'Rescue process successfully inserted!';
 	}
 	catch (PDOException $e) {
+		rollback();
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM rescue_process;"), "Rescue Processes",
-	["rescue_process_number"]
+$helper = table_params(query('SELECT * FROM emergency_event WHERE rescue_process_number IS NULL;'),
+	'Available for insertion',
+	['phone_number', 'call_time', 'person_name', 'place_address', 'rescue_process_number'],
+	['phone_number', 'call_time']
 );
 
-include view('insert/rescue-process.view.php';
+$result = table_params(query('SELECT * FROM emergency_event;'),
+	'Reserved',
+	['phone_number', 'call_time', 'person_name', 'place_address', 'rescue_process_number']
+);
+
+include view('dual.view.php');
 
