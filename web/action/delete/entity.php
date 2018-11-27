@@ -6,7 +6,7 @@ if (isset($_GET['entity_name'])) {
 	try {
 		$sql = "DELETE FROM medium_entity WHERE entity_name = :name;";
 
-		$result = $db->prepare($sql);
+		$result = prepare($sql);
 		$result->bindParam(':name', $_GET['entity_name']);
 		$result->execute();
 
