@@ -26,16 +26,24 @@ a:visited {
 	color: #9282ff;
 }
 
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 6pt 8pt;
+	border-bottom: 1px solid #606060;
+}
+
 th {
 	font-weight: bold;
 	font-size: 12pt;
-	padding: 6pt 8pt;
+	background-color: #303030;
 }
 
 td {
 	font-size: 11pt;
 	text-align: center;
-	padding: 6pt 8pt;
 }
 
 form {
@@ -88,9 +96,10 @@ input[type=submit]:hover {
 
 .content {
 	padding: 0 0 0 20pt;
-	display: none;
+	max-height: 0;
 	overflow: hidden;
 	background-color: #5a5a5a;
+	transition: max-height 0.3s ease-out;
 }
 
 .stripe {
@@ -106,5 +115,9 @@ input[type=submit]:hover {
 
 .stripe:hover {
 	background-color: #808080;
+}
+
+.inner {
+	overflow: visible;
 }
 

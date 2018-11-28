@@ -26,19 +26,23 @@
 	<?php endforeach ?>
 
 		<td>
+			<input type="text" name="<?=$m_name?>" form="<?=$index?>" placeholder="<?=$placeholder?>">
+		</td>
+
+		<td>
 			<select name="<?=$name?>" form="<?=$index?>">
-	<?php foreach($process as $p): ?>
-				<option value="<?=$p[$name]?>">Process <?=$p[$name]?></option>
+	<?php foreach($entity as $i => $entity_name): ?>
+				<option value="<?=$entity_name?>"><?=$entity_name?></option>
 	<?php endforeach ?>
 			</select>
 		</td>
 
 		<td>
-			<form id="<?=$index?>" action="" method="POST">
+			<form id="<?=$index?>" action="" method="GET">
 	<?php foreach($inputs as $in): ?>
 				<input type="hidden" name="<?=$in?>" value="<?=$row[$in]?>"/>
 	<?php endforeach ?>
-				<input type="submit" value="Associate"/>
+				<input type="submit" value="Edit"/>
 			</form>
 		</td>
 

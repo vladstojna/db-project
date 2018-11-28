@@ -12,7 +12,7 @@ function table_params($result, $title, $columns, $form=null) {
 function table($arg) {
 	if (isset($arg['r']) && isset($arg['c']) && isset($arg['t'])) { ?>
 	<h3> <?=$arg['t']?> </h3>
-	<table border=1>
+	<table>
 		<tr>
 		<?php foreach($arg['c'] as $col) { ?>
 			<th> <?=$col?> </th>
