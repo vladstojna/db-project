@@ -197,7 +197,7 @@ CREATE TABLE triggers(
 --------------------------------------------------------------------------
 
 CREATE TABLE coordinator(
-	coordinator_id INTEGER NOT NULL,
+	coordinator_id SERIAL NOT NULL,
 
 	PRIMARY KEY (coordinator_id)
 );

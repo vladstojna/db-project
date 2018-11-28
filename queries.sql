@@ -21,7 +21,7 @@ SELECT name FROM parameters GROUP BY name HAVING count(number) >= ALL (
 SELECT DISTINCT rescue_process_number FROM emergency_event NARUAL INNER JOIN (
 	SELECT * FROM triggers 
 	EXCEPT
-	SELECT medium_number; entity_name, rescue_process_number FROM audits)
+	SELECT medium_number, entity_name, rescue_process_number FROM audits)
 ) AS foo 
 WHERE call_time BETWEEN '2018-01-01 00:00:00' AND '2018-12-31 23:59:59'
 AND place_address='Oliveira do Hospital';
