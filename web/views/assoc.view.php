@@ -13,7 +13,7 @@
 
 <h3> <?=$title?> </h3>
 
-<table border=1>
+<table>
 	<tr>
 <?php foreach($columns as $col): ?>
 		<th> <?=$col?> </th>
