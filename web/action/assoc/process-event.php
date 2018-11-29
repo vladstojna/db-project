@@ -17,7 +17,7 @@ if (isset($phone_number) && isset($call_time) && isset($process_number)) {
 			':time'   => $call_time,
 			':number' => $process_number));
 
-		$status = "Successfully associated rescue process #{$process_number} with event ({$phone_number}, {$call_time})";
+		$status = "Successfully associated rescue process #{$process_number} with event ( {$phone_number}, {$call_time} )";
 
 	} catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
@@ -26,9 +26,10 @@ if (isset($phone_number) && isset($call_time) && isset($process_number)) {
 
 $data = array(
 	'result'  => query('SELECT phone_number, call_time, person_name, place_address
-	                    FROM emergency_event WHERE rescue_process_number IS NULL;'),
+	                    FROM emergency_event WHERE rescue_process_number IS NULL
+	                    ORDER BY call_time DESC;'),
 	'title'   => 'Non-reserved Emergency Events',
-	'columns' => ['Phone Number', 'Call Instant', 'Person Name', 'Place Address'],
+	'columns' => ['Phone Number', 'Call Instant', 'Person Name', 'Place Address', 'Process'],
 	'inputs'  => ['phone_number', 'call_time'],
 	'process' => query('SELECT * FROM rescue_process')->fetchAll(),
 	'name'    => 'rescue_process_number',

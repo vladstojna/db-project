@@ -30,7 +30,8 @@ if (isset($medium_number) && isset($old_entity) && isset($new_entity)) {
 }
 
 $data = array(
-	'result'  => query('SELECT * FROM medium NATURAL INNER JOIN medium_rescue;'),
+	'result'  => query('SELECT * FROM medium NATURAL INNER JOIN medium_rescue
+	                    ORDER BY entity_name, medium_number ASC;'),
 	'title'   => 'Edit Rescue Mediums',
 	'columns' => ['Medium Number', 'Entity Name', 'Medium Name', 'New Medium Name', 'New Entity'],
 	'inputs'  => ['medium_number', 'entity_name'],
