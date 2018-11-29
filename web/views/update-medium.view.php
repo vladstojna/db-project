@@ -42,7 +42,7 @@
 
 		<td>
 			<select name="<?=$name?>" form="<?=$index?>">
-	<?php foreach($entity as $i => $entity_name): ?>
+	<?php foreach($entity_filter[$index] as $entity_name): ?>
 				<option value="<?=$entity_name?>"><?=$entity_name?></option>
 	<?php endforeach ?>
 			</select>
