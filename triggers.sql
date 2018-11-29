@@ -60,6 +60,7 @@ BEGIN
 	END IF;
 
 	RETURN NULL;
+	
 END $$ LANGUAGE plpgsql;
 
 /* Create triggers */
