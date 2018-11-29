@@ -5,7 +5,7 @@ require '../../common/init.php';
 $medium_name   = $_REQUEST['medium_name'];
 $entity_name   = $_REQUEST['entity_name'];
 
-if (isset($medium_number) && isset($medium_name) && isset($entity_name)) {
+if (isset($medium_name) && isset($entity_name)) {
 	try {
 		$sql = 'INSERT INTO medium (medium_number, medium_name, entity_name)
 		        VALUES (DEFAULT, :name, :ename);';

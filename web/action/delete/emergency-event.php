@@ -30,5 +30,5 @@ $data = array(
 	'status'  => $status
 );
 
-echo template('table-single-prompt.view.view', $data);
+echo template('table-single-prompt.view', $data);
 
