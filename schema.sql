@@ -129,6 +129,7 @@ CREATE TABLE medium_combat(
 
 	FOREIGN KEY (medium_number, entity_name)
 		REFERENCES medium(medium_number, entity_name) ON DELETE CASCADE
+			ON UPDATE CASCADE
 );
 
 CREATE TABLE medium_support(
@@ -139,6 +140,7 @@ CREATE TABLE medium_support(
 
 	FOREIGN KEY (medium_number, entity_name)
 		REFERENCES medium(medium_number, entity_name) ON DELETE CASCADE
+			ON UPDATE CASCADE
 );
 
 CREATE TABLE medium_rescue(
@@ -149,6 +151,7 @@ CREATE TABLE medium_rescue(
 
 	FOREIGN KEY (medium_number, entity_name)
 		REFERENCES medium(medium_number, entity_name) ON DELETE CASCADE
+			ON UPDATE CASCADE
 );
 
 --------------------------------------------------------------------------
@@ -162,7 +165,8 @@ CREATE TABLE transports(
 	PRIMARY KEY (medium_number, entity_name, rescue_process_number),
 
 	FOREIGN KEY (medium_number, entity_name)
-		REFERENCES medium_rescue(medium_number, entity_name) ON DELETE CASCADE,
+		REFERENCES medium_rescue(medium_number, entity_name) ON DELETE CASCADE
+			ON UPDATE CASCADE,
 	FOREIGN KEY (rescue_process_number) 
 		REFERENCES rescue_process(rescue_process_number) ON DELETE CASCADE
 );
@@ -176,7 +180,8 @@ CREATE TABLE allocated(
 	PRIMARY KEY (medium_number, entity_name, rescue_process_number),
 
 	FOREIGN KEY (medium_number, entity_name)
-		REFERENCES medium_support(medium_number, entity_name) ON DELETE CASCADE,
+		REFERENCES medium_support(medium_number, entity_name) ON DELETE CASCADE
+			ON UPDATE CASCADE,
 	FOREIGN KEY (rescue_process_number) 
 		REFERENCES rescue_process(rescue_process_number) ON DELETE CASCADE
 );
@@ -189,7 +194,8 @@ CREATE TABLE triggers(
 	PRIMARY KEY (medium_number, entity_name, rescue_process_number),
 
 	FOREIGN KEY (medium_number, entity_name)
-		REFERENCES medium(medium_number, entity_name) ON DELETE CASCADE,
+		REFERENCES medium(medium_number, entity_name) ON DELETE CASCADE
+			ON UPDATE CASCADE,
 	FOREIGN KEY (rescue_process_number)
 		REFERENCES rescue_process(rescue_process_number) ON DELETE CASCADE
 );
@@ -216,7 +222,7 @@ CREATE TABLE audits(
 
 	FOREIGN KEY (medium_number, entity_name, rescue_process_number)
 		REFERENCES triggers(medium_number, entity_name, rescue_process_number)
-			ON DELETE CASCADE,
+			ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (coordinator_id)
 		REFERENCES coordinator(coordinator_id) ON DELETE CASCADE,
 
