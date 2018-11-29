@@ -1,7 +1,7 @@
 
 /* autoFill: implements auto incrementing id to video segments per video and media per entity */
 
-CREATE OR REPLACE FUNCTION autoFill() RETURNS trigger AS $$
+CREATE OR REPLACE FUNCTION auto_fill() RETURNS trigger AS $$
 DECLARE x INTEGER;
 BEGIN
 
@@ -28,7 +28,7 @@ END $$ LANGUAGE plpgsql;
 
 /* processValidity: does not allow more processes than emergency events */
 
-CREATE OR REPLACE FUNCTION processValidity() RETURNS trigger AS $$
+CREATE OR REPLACE FUNCTION process_validity() RETURNS trigger AS $$
 DECLARE p INTEGER;
 DECLARE e INTEGER;
 BEGIN
@@ -47,8 +47,8 @@ END $$ LANGUAGE plpgsql;
 
 /* Create triggers */
 
-CREATE TRIGGER autoFillSeg BEFORE INSERT ON video_segment FOR EACH ROW EXECUTE PROCEDURE autoFill();
+CREATE TRIGGER auto_fill_seg BEFORE INSERT ON video_segment FOR EACH ROW EXECUTE PROCEDURE auto_fill();
 
-CREATE TRIGGER autoFillMed BEFORE INSERT ON medium FOR EACH ROW EXECUTE PROCEDURE autoFill();
+CREATE TRIGGER auto_fill_med BEFORE INSERT OR UPDATE ON medium FOR EACH ROW EXECUTE PROCEDURE auto_fill();
 
-CREATE TRIGGER validateProc BEFORE INSERT ON rescue_process FOR EACH ROW EXECUTE PROCEDURE processValidity();
+CREATE TRIGGER validate_proc BEFORE INSERT ON rescue_process FOR EACH ROW EXECUTE PROCEDURE process_validity();
