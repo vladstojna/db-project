@@ -2,27 +2,33 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['medium_number']) && isset($_GET['entity_name'])) {
+$medium_number = $_REQUEST['medium_number'];
+$entity_name   = $_REQUEST['entity_name'];
+
+if (isset($medium_number) && isset($entity_name)) {
 	try {
-		$sql = "DELETE FROM medium WHERE medium_number = :number AND entity_name = :name;";
+		$sql = 'DELETE FROM medium WHERE medium_number = :number AND entity_name = :name;';
 
 		$result = prepare($sql);
-		$result->bindParam(':number', $_GET['medium_number']);
-		$result->bindParam(':name',  $_GET['entity_name']);
-		$result->execute();
+		$result->execute(array(
+			':number' => $medium_number,
+			':name'   => $entity_name));
 
-		$status = "Value successfully deleted!";
+		$status = "Value successfully deleted: [ {$medium_number}, {$entity_name} ]";
 	}
 	catch (PDOException $e) {
-		echo '<p>'.$e->getMessage().'</p>';
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM medium;"), "Mediums",
-	["medium_number", "medium_name", "entity_name"],
-	["medium_number", "entity_name"]
+$data = array(
+	'result'  => query('SELECT * FROM medium;'),
+	'caption' => 'Mediums',
+	'columns' => ['Medium Number', 'Medium Name', 'Entity Name'],
+	'inputs'  => ['medium_number', 'entity_name'],
+	'prompt'  => 'Delete',
+	'status'  => $status
 );
 
-include view('simple.view.php');
+echo template('table-single-prompt.view', $data);
 

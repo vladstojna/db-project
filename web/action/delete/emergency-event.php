@@ -2,26 +2,33 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['phone_number']) && isset($_GET['call_time'])) {
+$phone_number = $_REQUEST['phone_number'];
+$call_time    = $_REQUEST['call_time'];
+
+if (isset($phone_number) && isset($call_time)) {
 	try {
-		$sql = "DELETE FROM emergency_event WHERE phone_number = :number AND call_time = :time;";
+		$sql = 'DELETE FROM emergency_event WHERE phone_number = :number AND call_time = :time;';
 
 		$result = prepare($sql);
-		$result->bindParam(':number',  $_GET['phone_number']);
-		$result->bindParam(':time',    $_GET['call_time']);
-		$result->execute();
+		$result->execute(array(
+			':number' => $phone_number,
+			':time'   => $call_time));
 
-		$status = "Value successfully deleted!";
+		$status = "Value successfully deleted: [ {$phone_number}, {$call_time} ]";
 	}
 	catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM emergency_event"), "Emergency Events",
-	["phone_number", "call_time", "person_name", "place_address", "rescue_process_number"],
-	["phone_number", "call_time"]
+$data = array(
+	'result'  => query('SELECT * FROM emergency_event;'),
+	'caption' => 'Emergency Events',
+	'columns' => ['Phone Number', 'Call Instant', 'Person Name', 'Place Address', 'Rescue Process Number'],
+	'inputs'  => ['phone_number', 'call_time'],
+	'prompt'  => 'Delete',
+	'status'  => $status
 );
 
-include view('simple.view.php');
+echo template('table-single-prompt.view.view', $data);
 

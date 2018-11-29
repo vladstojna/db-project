@@ -2,22 +2,29 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['place_address'])) {
+$place = $_REQUEST['place_address'];
+
+if (isset($place)) {
 	try {
-		$sql = "INSERT INTO place (place_address) VALUES (:address);";
+		$sql = 'INSERT INTO place (place_address) VALUES (:address);';
 
 		$result = prepare($sql);
-		$result->bindParam(':address', $_GET['place_address']);
-		$result->execute();
+		$result->execute(array(
+			':address' => $place));
 
-		$status = "Value successfully inserted!";
+		$status = "Value successfully inserted: {$place}";
 	}
 	catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM place;"), "Places", ["place_address"]);
+$data = array(
+	'result'  => query('SELECT * FROM place;'),
+	'caption' => 'Existing Places',
+	'columns' => ['Address'],
+	'status'  => $status
+);
 
-include view('insert/place.view.php');
+echo template('insert/place.view', $data);
 

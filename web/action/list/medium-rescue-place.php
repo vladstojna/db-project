@@ -2,30 +2,39 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['place_address'])) {
+$place = $_REQUEST['place_address'];
 
-	$sql =
-		"SELECT DISTINCT medium_number, medium_name, entity_name
-		FROM emergency_event
-			NATURAL INNER JOIN triggers
-			NATURAL INNER JOIN medium_rescue
-			NATURAL INNER JOIN medium
-		WHERE place_address = :address;";
+if (isset($place)) {
+	try {
+		$sql = 'SELECT DISTINCT medium_number, medium_name, entity_name
+		        FROM emergency_event
+		            NATURAL INNER JOIN triggers
+		            NATURAL INNER JOIN medium_rescue
+		            NATURAL INNER JOIN medium
+		        WHERE place_address = :address
+		        ORDER BY entity_name, medium_number ASC;';
 
-	$result = prepare($sql);
-	$result->bindParam(':address', $_GET['place_address']);
-	$result->execute();
+		$result = prepare($sql);
+		$result->execute(array(':address' => $place));
 
-	$result = table_params($result, "Triggered Rescue Mediums",
-		["medium_number", "medium_name", "entity_name"]
-	);
-
+	} catch (PDOException $e) {
+		$status = "ERROR: {$e->getMessage()}";
+	}
 }
 
-$sql = "SELECT DISTINCT place_address
-		FROM emergency_event NATURAL INNER JOIN triggers;";
+$data = array(
+	'helper' => query('SELECT DISTINCT place_address
+	                   FROM emergency_event NATURAL INNER JOIN triggers
+	                   ORDER BY place_address ASC;'),
+	'caption_helper' => 'Choose a place',
+	'helpercols'     => ['Place'],
+	'inputs'         => ['place_address'],
 
-$helper = table_params(query($sql), "Places", ["place_address"], ["place_address"]);
+	'result'  => $result,
+	'caption' => 'Triggered Rescue Mediums',
+	'columns' => ['Medium Number', 'Medium Name', 'Entity Name'],
+	'status'  => $status
+);
 
-include view('dual.view.php');
+echo template('table-dual.view', $data);
 

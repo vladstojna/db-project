@@ -2,9 +2,11 @@
 
 require '../../common/init.php';
 
-$table = table_params(query("SELECT * FROM rescue_process;"), "Rescue Processes",
-	["rescue_process_number"]
+$data = array(
+	'result'  => query('SELECT * FROM rescue_process;'),
+	'caption' => 'Rescue Processes',
+	'columns' => ['Process']
 );
 
-include view('simple.view.php');
+echo template('table-single.view', $data);
 

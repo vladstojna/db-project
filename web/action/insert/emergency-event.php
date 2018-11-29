@@ -2,31 +2,39 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['phone_number']) &&
-	isset($_GET['call_time'])    &&
-	isset($_GET['person_name'])  &&
-	isset($_GET['place_address'])) {
+$phone_number = $_REQUEST['phone_number'];
+$call_time    = $_REQUEST['call_time'];
+$person_name  = $_REQUEST['person_name'];
+$address      = $_REQUEST['place_address'];
+
+if (isset($phone_number) && isset($call_time) && isset($person_name) && isset($address)) {
 	try {
-		$sql = "INSERT INTO emergency_event (phone_number, call_time, person_name, place_address)
-			VALUES (:number, :time, :name, :address);";
+		$sql = 'INSERT INTO emergency_event (phone_number, call_time, person_name, place_address)
+		        VALUES (:number, :time, :name, :address);';
 
 		$result = prepare($sql);
-		$result->bindParam(':number',  $_GET['phone_number']);
-		$result->bindParam(':time',    $_GET['call_time']);
-		$result->bindParam(':name',    $_GET['person_name']);
-		$result->bindParam(':address', $_GET['place_address']);
-		$result->execute();
+		$result->execute(array(
+			':number'  => $phone_number,
+			':time'    => $call_time,
+			':name'    => $person_name,
+			':address' => $address));
 
-		$status = "Value successfully inserted!";
+		$status = "Value successfully inserted:
+		           [ {$phone_number}, {$call_time}, {$person_name}, {$address} ]";
 	}
 	catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM emergency_event"), "Emergency Events",
-	["phone_number", "call_time", "person_name", "place_address", "rescue_process_number"]
+$data = array(
+	'result'  => query('SELECT phone_number, call_time, person_name, place_address
+	                    FROM emergency_event
+	                    ORDER BY call_time DESC;'),
+	'caption' => 'Existing Emergency Events',
+	'columns' => ['Phone Number', 'Call Instant', 'Person Name', 'Place Address'],
+	'status'  => $status
 );
 
-include view('insert/emergency-event.view.php');
+echo template('insert/emergency-event.view', $data);
 

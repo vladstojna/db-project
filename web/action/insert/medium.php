@@ -2,29 +2,33 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['medium_number']) &&
-	isset($_GET['medium_name'])   &&
-	isset($_GET['entity_name'])) {
+$medium_name   = $_REQUEST['medium_name'];
+$entity_name   = $_REQUEST['entity_name'];
+
+if (isset($medium_number) && isset($medium_name) && isset($entity_name)) {
 	try {
-		$sql = "INSERT INTO medium (medium_number, medium_name, entity_name)
-			VALUES (:number, :name, :ename);";
+		$sql = 'INSERT INTO medium (medium_number, medium_name, entity_name)
+		        VALUES (DEFAULT, :name, :ename);';
 
 		$result = prepare($sql);
-		$result->bindParam(':number', $_GET['medium_number']);
-		$result->bindParam(':name',   $_GET['medium_name']);
-		$result->bindParam(':ename',  $_GET['entity_name']);
-		$result->execute();
+		$result->execute(array(
+			'name'   => $medium_name,
+			'ename'  => $entity_name));
 
-		$status = "Value successfully inserted!";
+		$status = "Value successfully inserted: [ {$medium_name}, {$entity_name} ]";
 	}
 	catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM medium;"), "Mediums",
-	["medium_number", "medium_name", "entity_name"]
+$data = array(
+	'result'  => query('SELECT * FROM medium
+	                    ORDER BY entity_name, medium_number ASC;'),
+	'caption' => 'Existing Mediums',
+	'columns' => ['Medium Number', 'Medium Name', 'Entity Name'],
+	'status'  => $status
 );
 
-include view('insert/medium.view.php');
+echo template('insert/medium.view', $data);
 

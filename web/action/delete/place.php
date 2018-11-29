@@ -2,22 +2,30 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['place_address'])) {
+$place_address = $_REQUEST['place_address'];
+
+if (isset($place_address)) {
 	try {
-		$sql = "DELETE FROM place WHERE place_address = :address;";
+		$sql = 'DELETE FROM place WHERE place_address = :address;';
 
 		$result = prepare($sql);
-		$result->bindParam(':address', $_GET['place_address']);
-		$result->execute();
+		$result->execute(array(':address' => $place_address));
 
-		$status = "Value successfully deleted!";
+		$status = "Value successfully deleted: {$place_address}";
 	}
 	catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM place;"), "Places", ["place_address"], ["place_address"]);
+$data = array(
+	'result'  => query('SELECT * FROM place;'),
+	'caption' => 'Places',
+	'columns' => ['Address'],
+	'inputs'  => ['place_address'],
+	'prompt'  => 'Delete',
+	'status'  => $status
+);
 
-include view('simple.view.php');
+echo template('table-single-prompt.view', $data);
 

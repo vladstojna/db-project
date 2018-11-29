@@ -2,9 +2,11 @@
 
 require '../../common/init.php';
 
-$table = table_params(query("SELECT * FROM medium;"), "Mediums",
-	["medium_number", "medium_name", "entity_name"]
+$data = array(
+	'result'  => query('SELECT * FROM medium ORDER BY entity_name, medium_number ASC;'),
+	'caption' => 'Mediums',
+	'columns' => ['Medium Number', 'Medium Name', 'Entity Name']
 );
 
-include view('simple.view.php');
+echo template('table-single.view', $data);
 

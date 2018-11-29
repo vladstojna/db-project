@@ -38,7 +38,5 @@ $data = array(
 	'status'  => $status
 );
 
-extract($data);
-
-include view('assoc.view.php');
+echo template('process-assoc.view', $data);
 

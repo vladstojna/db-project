@@ -2,24 +2,30 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['entity_name'])) {
+$entity_name = $_REQUEST['entity_name'];
+
+if (isset($entity_name)) {
 	try {
-		$sql = "DELETE FROM medium_entity WHERE entity_name = :name;";
+		$sql = 'DELETE FROM medium_entity WHERE entity_name = :name;';
 
 		$result = prepare($sql);
-		$result->bindParam(':name', $_GET['entity_name']);
-		$result->execute();
+		$result->execute(array(':name' => $entity_name));
 
-		$status = "Value successfully deleted!";
+		$status = "Value successfully deleted: {$entity_name}";
 	}
 	catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM medium_entity;"), "Entities", ["entity_name"],
-	["entity_name"]
+$data = array(
+	'result'  => query('SELECT * FROM medium_entity;'),
+	'caption' => 'Entities',
+	'columns' => ['Entity Name'],
+	'inputs'  => ['entity_name'],
+	'prompt'  => 'Delete',
+	'status'  => $status
 );
 
-include view('simple.view.php');
+echo template('table-single-prompt.view', $data);
 

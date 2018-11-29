@@ -2,41 +2,39 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['medium_number']) && isset($_GET['entity_name'])) {
+$medium_number = $_REQUEST['medium_number'];
+$entity_name   = $_REQUEST['entity_name'];
+
+if (isset($medium_number) && isset($entity_name)) {
 	try {
-		$sql = "INSERT INTO medium_support (medium_number, entity_name)
-			VALUES (:number, :name);";
+		$sql = 'INSERT INTO medium_support (medium_number, entity_name)
+		        VALUES (:number, :name);';
 
-		$result = prepare($sql);
-		$result->bindParam(':number', $_GET['medium_number']);
-		$result->bindParam(':name',  $_GET['entity_name']);
-		$result->execute();
+		$res = prepare($sql);
+		$res->execute(array(
+			':number' => $medium_number,
+			':name'   => $entity_name));
 
-		$status = "Value successfully inserted!";
+		$status = "Medium successfully inserted: [ #{$medium_number}, {$entity_name} ]";
 	}
 	catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$helper = table_params(
-	query("
-		SELECT * FROM medium m
-		WHERE NOT EXISTS (
-			SELECT * FROM medium_support mc
-			WHERE m.medium_number = mc.medium_number
-				AND m.entity_name = mc.entity_name
-		);"),
-	"Candidates",
-	["medium_number", "medium_name", "entity_name"],
-	["medium_number", "entity_name"]
+$data = array(
+	'result' => query('SELECT * FROM medium AS m
+	                   WHERE NOT EXISTS (
+	                   SELECT * FROM medium_support mc
+	                   WHERE m.medium_number = mc.medium_number
+	                       AND m.entity_name = mc.entity_name)
+	                   ORDER BY entity_name, medium_number ASC;'),
+	'caption' => 'Candidate Mediums',
+	'columns' => ['Medium Number', 'Medium Name', 'Entity Name'],
+	'inputs'  => ['medium_number', 'entity_name'],
+	'prompt'  => 'Insert',
+	'status'  => $status
 );
 
-$result = table_params(
-	query("SELECT * FROM medium_support NATURAL INNER JOIN medium"),
-	"Combat Mediums",
-	["medium_number", "medium_name", "entity_name"]
-);
-
-include view('dual.view.php');
+echo template('table-single-prompt.view', $data);
 

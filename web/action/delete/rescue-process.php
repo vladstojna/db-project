@@ -2,24 +2,30 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['rescue_process_number'])) {
+$process = $_REQUEST['rescue_process_number'];
+
+if (isset($process)) {
 	try {
-		$sql = "DELETE FROM rescue_process WHERE rescue_process_number = :number;";
+		$sql = 'DELETE FROM rescue_process WHERE process = :address;';
 
 		$result = prepare($sql);
-		$result->bindParam(':number', $_GET['rescue_process_number']);
-		$result->execute();
+		$result->execute(array(':address' => $process));
 
-		$status = "Value successfully deleted!";
+		$status = "Value successfully deleted: {$process}";
 	}
 	catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM rescue_process;"), "Rescue Processes",
-	["rescue_process_number"], ["rescue_process_number"]
+$data = array(
+	'result'  => query('SELECT * FROM rescue_process;'),
+	'caption' => 'Processes',
+	'columns' => ['Process'],
+	'inputs'  => ['rescue_process_number'],
+	'prompt'  => 'Delete',
+	'status'  => $status
 );
 
-include view('simple.view.php');
+echo template('table-single-prompt.view', $data);
 

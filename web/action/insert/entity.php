@@ -2,22 +2,29 @@
 
 require '../../common/init.php';
 
-if (isset($_GET['entity_name'])) {
+$entity = $_REQUEST['entity_name'];
+
+if (isset($entity)) {
 	try {
-		$sql = "INSERT INTO medium_entity (entity_name) VALUES (:name);";
+		$sql = 'INSERT INTO medium_entity (entity_name) VALUES (:name);';
 
 		$result = prepare($sql);
-		$result->bindParam(':name', $_GET['entity_name']);
-		$result->execute();
+		$result->execute(array(
+			':name' => $entity));
 
-		$status = "Value successfully inserted!";
+		$status = "Value successfully inserted: {$entity}";
 	}
 	catch (PDOException $e) {
 		$status = "ERROR: {$e->getMessage()}";
 	}
 }
 
-$table = table_params(query("SELECT * FROM medium_entity;"), "Entities", ["entity_name"]);
+$data = array(
+	'result'  => query('SELECT * FROM medium_entity;'),
+	'caption' => 'Existing Entities',
+	'columns' => ['Entity Name'],
+	'status'  => $status
+);
 
-include view('insert/entity.view.php');
+echo template('insert/entity.view', $data);
 
