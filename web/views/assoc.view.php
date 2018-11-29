@@ -3,6 +3,16 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../css/style.css">
 </head>
+
+<style>
+	div {
+		height: 50%;
+		width: 60%;
+		overflow-y: auto;
+		padding-right: 10pt;
+	}
+</style>
+
 <body>
 
 <a href="../../index.html"> ~ Back </a>
@@ -13,6 +23,7 @@
 
 <h3> <?=$title?> </h3>
 
+<div>
 <table>
 	<tr>
 <?php foreach($columns as $col): ?>
@@ -45,6 +56,7 @@
 	</tr>
 <?php endforeach ?>
 </table>
+</div>
 
 </body>
 

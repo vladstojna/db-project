@@ -28,22 +28,23 @@ a:visited {
 
 table {
 	border-collapse: collapse;
+	width: 100%;
 }
 
 th, td {
 	padding: 6pt 8pt;
-	border-bottom: 1px solid #606060;
 }
 
 th {
 	font-weight: bold;
 	font-size: 12pt;
-	background-color: #303030;
+	text-transform: uppercase;
 }
 
 td {
 	font-size: 11pt;
 	text-align: center;
+	border-bottom: 1px solid #606060;
 }
 
 form {
