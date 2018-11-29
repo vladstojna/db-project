@@ -11,10 +11,7 @@
 	<p> <?=$status?> </p>
 <?php } ?>
 
-<form action="" method="GET">
-	<label for="numInput"> Medium Number </label>
-	<input id="numInput" type="text" name="medium_number" placeholder="Number..." required>
-
+<form action="" method="POST">
 	<label for="nameInput"> Medium Name </label>
 	<input id="nameInput" type="text" name="medium_name" placeholder="Name..." required>
 
@@ -24,7 +21,22 @@
 	<input type="submit" value="Insert">
 </form>
 
-<?php table($table) ?>
+<h3> <?=$caption?> </h3>
+
+<table>
+	<tr>
+<?php foreach($columns as $col): ?>
+		<th> <?=$col?> </th>
+<?php endforeach ?>
+	</tr>
+<?php foreach($result as $row): ?>
+	<tr>
+	<?php foreach($row as $value): ?>
+		<td> <?=$value?> </td>
+	<?php endforeach ?>
+	</tr>
+<?php endforeach ?>
+</table>
 
 </body>
 </html>
