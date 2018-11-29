@@ -1,7 +1,11 @@
+DROP TRIGGER IF EXISTS auto_fill_seg ON video_segment;
+DROP TRIGGER IF EXISTS auto_fill_med ON medium;
+DROP TRIGGER IF EXISTS validate_proc ON rescue_process;
+DROP TRIGGER IF EXISTS del_proc ON emergency_event;
 
-/* autoFill: implements auto incrementing id to video segments per video and media per entity */
+/* auto_fill: implements auto incrementing id to video segments per video and media per entity */
 
-CREATE OR REPLACE FUNCTION auto_fill() RETURNS trigger AS $$
+CREATE OR REPLACE FUNCTION auto_fill() RETURNS TRIGGER AS $$
 DECLARE x INTEGER;
 BEGIN
 
@@ -26,9 +30,9 @@ BEGIN
 END $$ LANGUAGE plpgsql;
 
 
-/* processValidity: does not allow more processes than emergency events */
+/* process_validity: does not allow more processes than emergency events */
 
-CREATE OR REPLACE FUNCTION process_validity() RETURNS trigger AS $$
+CREATE OR REPLACE FUNCTION process_validity() RETURNS TRIGGER AS $$
 DECLARE p INTEGER;
 DECLARE e INTEGER;
 BEGIN
@@ -44,6 +48,19 @@ BEGIN
 
 END $$ LANGUAGE plpgsql;
 
+/* del_procs: deletes rescue_processes in the event they were associated with a single, previously deleted, emergency event */
+
+CREATE OR REPLACE FUNCTION delete_process() RETURNS TRIGGER AS $$
+BEGIN
+
+	IF NOT EXISTS (SELECT * FROM emergency_event WHERE rescue_process_number=OLD.rescue_process_number) THEN
+
+		DELETE FROM rescue_process WHERE rescue_process_number=OLD.rescue_process_number;
+
+	END IF;
+
+	RETURN NULL;
+END $$ LANGUAGE plpgsql;
 
 /* Create triggers */
 
@@ -52,3 +69,5 @@ CREATE TRIGGER auto_fill_seg BEFORE INSERT ON video_segment FOR EACH ROW EXECUTE
 CREATE TRIGGER auto_fill_med BEFORE INSERT OR UPDATE ON medium FOR EACH ROW EXECUTE PROCEDURE auto_fill();
 
 CREATE TRIGGER validate_proc BEFORE INSERT ON rescue_process FOR EACH ROW EXECUTE PROCEDURE process_validity();
+
+CREATE TRIGGER del_proc AFTER DELETE ON emergency_event FOR EACH ROW EXECUTE PROCEDURE delete_process();
