@@ -9,6 +9,6 @@
 	* ~~inserting medium: entity dropdown~~
 
 ```bash
-	tree
+	exec tree
 ```
 
