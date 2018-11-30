@@ -38,3 +38,9 @@ function transaction(...$queries) {
 	commit();
 }
 
+function exception_status($e) {
+	$msg  = explode('DETAIL: ', $e->getMessage());
+	$code = $e->getCode();
+	return "ERROR {$code}: {$msg[1]}";
+}
+
