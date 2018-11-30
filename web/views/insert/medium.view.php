@@ -7,16 +7,20 @@
 
 <a href="../../index.html"> ~ Back </a>
 
-<?php if (isset($status)) { ?>
+<?php if (isset($status)): ?>
 	<p> <?=$status?> </p>
-<?php } ?>
+<?php endif ?>
 
-<form action="" method="POST">
+<form id="form" action="" method="POST">
 	<label for="nameInput"> Medium Name </label>
 	<input id="nameInput" type="text" name="medium_name" placeholder="Name..." required>
 
 	<label for="entityInput"> Entity </label>
-	<input id="entityInput" type="text" name="entity_name" placeholder="Name..." required>
+	<select id="entityInput" name="entity_name" form="form">
+<?php foreach($select as $value): ?>
+		<option value="<?=$value?>"> <?=$value?> </option>
+<?php endforeach ?>
+	</select>
 
 	<input type="submit" value="Insert">
 </form>

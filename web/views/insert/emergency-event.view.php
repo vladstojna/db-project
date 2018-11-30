@@ -7,11 +7,11 @@
 
 <a href="../../index.html"> ~ Back </a>
 
-<?php if (isset($status)) { ?>
+<?php if (isset($status)): ?>
 	<p> <?=$status?> </p>
-<?php } ?>
+<?php endif ?>
 
-<form action="" method="POST">
+<form id="form" action="" method="POST">
 
 	<label for="phoneInput"> Phone Number </label>
 	<input id="phoneInput" type="text" name="phone_number" placeholder="e.g. 912345678" required>
@@ -22,8 +22,12 @@
 	<label for="nameInput"> Caller </label>
 	<input id="nameInput" type="text" name="person_name" placeholder="Name..." required>
 
-	<label for"placeInput"> Place </label>
-	<input id="placeInput" type="text" name="place_address" placeholder="Address..." required>
+	<label for="placeInput"> Place </label>
+	<select id="placeInput" name="place_address" form="form">
+<?php foreach($select as $value): ?>
+		<option value="<?=$value?>"> <?=$value?> </option>
+<?php endforeach ?>
+	</select>
 
 	<input type="submit" value="Insert">
 </form>

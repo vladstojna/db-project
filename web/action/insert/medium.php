@@ -25,6 +25,7 @@ if (isset($medium_name) && isset($entity_name)) {
 $data = array(
 	'result'  => query('SELECT * FROM medium
 	                    ORDER BY entity_name, medium_number ASC;'),
+	'select'  => query('SELECT * FROM medium_entity')->fetchAll(PDO::FETCH_COLUMN, 0),
 	'caption' => 'Existing Mediums',
 	'columns' => ['Medium Number', 'Medium Name', 'Entity Name'],
 	'status'  => $status

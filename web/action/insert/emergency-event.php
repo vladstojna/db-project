@@ -31,6 +31,7 @@ $data = array(
 	'result'  => query('SELECT phone_number, call_time, person_name, place_address
 	                    FROM emergency_event
 	                    ORDER BY call_time DESC;'),
+	'select'  => query('SELECT * FROM place;')->fetchAll(PDO::FETCH_COLUMN, 0),
 	'caption' => 'Existing Emergency Events',
 	'columns' => ['Phone Number', 'Call Instant', 'Person Name', 'Place Address'],
 	'status'  => $status
