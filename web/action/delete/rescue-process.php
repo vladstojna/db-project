@@ -14,7 +14,7 @@ if (isset($process)) {
 		$status = "Value successfully deleted: {$process}";
 	}
 	catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

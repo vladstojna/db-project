@@ -18,7 +18,7 @@ if (isset($medium_name) && isset($entity_name)) {
 		$status = "Value successfully inserted: [ {$medium_name}, {$entity_name} ]";
 	}
 	catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

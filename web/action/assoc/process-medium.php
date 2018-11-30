@@ -20,7 +20,7 @@ if (isset($medium_number) && isset($entity_name) && isset($process_number)) {
 		$status = "Successfully associated rescue process #{$process_number} with medium #{$medium_number} from {$entity_name})";
 
 	} catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

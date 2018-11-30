@@ -2,33 +2,8 @@
 
 require '../../common/init.php';
 
-$medium_number = $_REQUEST['medium_number'];
-$entity_name   = $_REQUEST['entity_name'];
+$table = 'medium_combat';
+$caption = 'Delete Combat Mediums';
 
-if (isset($medium_number) && isset($entity_name)) {
-	try {
-		$sql = 'DELETE FROM medium_combat WHERE medium_number = :number AND entity_name = :name;';
-
-		$result = prepare($sql);
-		$result->execute(array(
-			':number' => $medium_number,
-			':name'   => $entity_name));
-
-		$status = "Value successfully deleted: [ {$medium_number}, {$entity_name} ]";
-	}
-	catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
-	}
-}
-
-$data = array(
-	'result'  => query('SELECT * FROM medium_combat NATURAL INNER JOIN medium;'),
-	'caption' => 'Combat Mediums',
-	'columns' => ['Medium Number', 'Medium Name', 'Entity Name'],
-	'inputs'  => ['medium_number', 'entity_name'],
-	'prompt'  => 'Delete',
-	'status'  => $status
-);
-
-echo template('table-single-prompt.view', $data);
+require 'medium-specific.php';
 

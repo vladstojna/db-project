@@ -14,7 +14,7 @@ if (isset($place_address)) {
 		$status = "Value successfully deleted: {$place_address}";
 	}
 	catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

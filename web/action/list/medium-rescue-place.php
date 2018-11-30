@@ -18,7 +18,7 @@ if (isset($place)) {
 		$result->execute(array(':address' => $place));
 
 	} catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

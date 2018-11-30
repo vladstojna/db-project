@@ -7,6 +7,8 @@ $call_time    = $_REQUEST['call_time'];
 
 if (isset($phone_number) && isset($call_time)) {
 	try {
+		begin_transaction();
+
 		$sql = 'DELETE FROM emergency_event WHERE phone_number = :number AND call_time = :time;';
 
 		$result = prepare($sql);
@@ -14,10 +16,13 @@ if (isset($phone_number) && isset($call_time)) {
 			':number' => $phone_number,
 			':time'   => $call_time));
 
+		commit();
+
 		$status = "Value successfully deleted: [ {$phone_number}, {$call_time} ]";
 	}
 	catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		rollback();
+		$status = exception_status($e);
 	}
 }
 

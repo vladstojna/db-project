@@ -14,7 +14,7 @@ if (isset($entity_name)) {
 		$status = "Value successfully deleted: {$entity_name}";
 	}
 	catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

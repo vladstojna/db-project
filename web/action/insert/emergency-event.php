@@ -23,7 +23,7 @@ if (isset($phone_number) && isset($call_time) && isset($person_name) && isset($a
 		           [ {$phone_number}, {$call_time}, {$person_name}, {$address} ]";
 	}
 	catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

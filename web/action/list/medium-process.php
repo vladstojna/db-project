@@ -14,7 +14,7 @@ if (isset($process)) {
 		$result->execute(array(':number' => $process));
 
 	} catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

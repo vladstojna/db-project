@@ -15,7 +15,7 @@ if (isset($place)) {
 		$status = "Value successfully inserted: {$place}";
 	}
 	catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

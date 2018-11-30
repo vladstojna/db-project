@@ -20,7 +20,7 @@ if (isset($phone_number) && isset($call_time) && isset($process_number)) {
 		$status = "Successfully associated rescue process #{$process_number} with event ( {$phone_number}, {$call_time} )";
 
 	} catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

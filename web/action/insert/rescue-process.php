@@ -28,7 +28,7 @@ if (isset($phone_number) && isset($call_time)) {
 	}
 	catch (PDOException $e) {
 		rollback();
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 

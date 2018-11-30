@@ -15,7 +15,7 @@ if (isset($entity)) {
 		$status = "Value successfully inserted: {$entity}";
 	}
 	catch (PDOException $e) {
-		$status = "ERROR: {$e->getMessage()}";
+		$status = exception_status($e);
 	}
 }
 
