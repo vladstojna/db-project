@@ -3,13 +3,21 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../../css/style.css">
 </head>
+
+<style>
+	.scrollable {
+		height: 70%;
+		width: 100%;
+		overflow-y: auto;
+		padding-right: 10pt;
+	}
+</style>
+
 <body>
 
 <a href="../../index.html"> ~ Back </a>
 
-<?php if (isset($status)): ?>
-	<p> <?=$status?> </p>
-<?php endif ?>
+<p> <?=$status?> </p>
 
 <form id="form" action="" method="POST">
 	<label for="nameInput"> Medium Name </label>
@@ -27,6 +35,7 @@
 
 <h3> <?=$caption?> </h3>
 
+<div class="scrollable">
 <table>
 	<tr>
 <?php foreach($columns as $col): ?>
@@ -41,6 +50,7 @@
 	</tr>
 <?php endforeach ?>
 </table>
+</div>
 
 </body>
 </html>

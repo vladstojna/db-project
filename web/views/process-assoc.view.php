@@ -5,9 +5,9 @@
 </head>
 
 <style>
-	div {
-		height: 50%;
-		width: 60%;
+	.scrollable {
+		height: 70%;
+		width: 100%;
 		overflow-y: auto;
 		padding-right: 10pt;
 	}
@@ -17,13 +17,11 @@
 
 <a href="../../index.html"> ~ Back </a>
 
-<?php if (isset($status)): ?>
 <p> <?=$status?> </p>
-<?php endif ?>
 
 <h3> <?=$title?> </h3>
 
-<div>
+<div class="scrollable">
 <table>
 	<tr>
 <?php foreach($columns as $col): ?>

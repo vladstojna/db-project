@@ -5,8 +5,8 @@
 </head>
 
 <style>
-	div {
-		height: 50%;
+	.scrollable {
+		height: 70%;
 		width: 100%;
 		overflow-y: auto;
 		padding-right: 10pt;
@@ -17,11 +17,9 @@
 
 <a href="../../index.html"> ~ Back </a>
 
-<?php if (isset($status)): ?>
-	<p> <?=$status?> </p>
-<?php endif ?>
+<p> <?=$status?> </p>
 
-<div>
+<div class="scrollable">
 <table>
 	<caption> <?=$caption?> </caption>
 	<tr>
