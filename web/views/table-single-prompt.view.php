@@ -6,7 +6,7 @@
 
 <body>
 
-	<a href="../../index.html"> ~ Back </a>
+	<a href="javascript:history.back()"> ~ Back </a> 
 
 	<h1> <?=$title?> </h1>
 
