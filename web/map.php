@@ -7,14 +7,9 @@ require_once 'common/init.php';
 /* get data sent by user */
 
 if (isset($_REQUEST['action']) && isset($_REQUEST['data'])) {
-
-	/* get extra information if exists */
-
-	if (isset($_REQUEST['subdata']))
-		$subdata = $_REQUEST['subdata'];
-
-	/* include file */
-
-	require_once ROOT_DIR . '/action/' . $_REQUEST['action'] . $_REQUEST['data'] . '.php';
+	$action = $_REQUEST['action'];
+	$data   = $_REQUEST['data'];
 }
+
+require_once ROOT_DIR . '/action/' . $action . '/' . $data . '.php';
 
