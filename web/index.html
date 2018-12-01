@@ -12,7 +12,7 @@
 		<div id="wrapper">
 
 			<button class="collapsible">
-				<b> (a) </b> Insert/Delete...
+				Modify...
 			</button>
 			<div class="content">
 				<button class="collapsible"> Place </button>
@@ -40,12 +40,7 @@
 					<button class="stripe" onclick="location.href='action/insert/entity.php'"> Insert </button>
 					<button class="stripe" onclick="location.href='action/delete/entity.php'"> Delete </button>
 				</div>
-			</div>
 			
-			<button class="collapsible">
-				<b> (b) </b> Insert/Edit/Delete...
-			</button>
-			<div class="content">
 				<button class="collapsible"> Combat Medium </button>
 				<div class="content inner">
 					<button class="stripe" onclick="location.href='action/insert/medium-combat.php'"> Insert </button>
@@ -67,17 +62,28 @@
 			</div>
 
 			<button class="collapsible">
-				<b> (c) </b> List...
+				List...
 			</button>
 			<div class="content">
 				<button class="collapsible" onclick="location.href='action/list/rescue-process.php'"> Rescue Processes </button>
 				<div class="content"></div>
+
 				<button class="collapsible" onclick="location.href='action/list/medium.php'"> Mediums </button>
+				<div class="content"></div>
+
+				<button class="collapsible" onclick="location.href='action/list/medium-process.php'">
+					Mediums per rescue process
+				</button>
+				<div class="content"></div>
+				
+				<button class="collapsible" onclick="location.href='action/list/medium-rescue-place.php'">
+					Rescue mediums per place
+				</button>
 				<div class="content"></div>
 			</div>
 
 			<button class="collapsible" >
-				<b> (d) </b> Associate Rescue Processes to...
+				Associate Rescue Processes to...
 			</button>
 			<div class="content">
 				<button class="collapsible" onclick="location.href='action/assoc/process-event.php'"> Emergency Event </button>
@@ -86,15 +92,6 @@
 				<div class="content"></div>
 			</div>
 
-			<button class="collapsible" onclick="location.href='action/list/medium-process.php'">
-				<b> (e) </b> List mediums triggered by a specific rescue process
-			</button>
-			<div class="content"></div>
-			
-			<button class="collapsible" onclick="location.href='action/list/medium-rescue-place.php'">
-				<b> (f) </b> List rescue mediums triggered by rescue processes originated in a specific place
-			</button>
-			<div class="content"></div>
 
 		</div>
 
