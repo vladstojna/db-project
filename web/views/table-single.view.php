@@ -1,41 +1,20 @@
 <html>
-<head>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../../css/style.css">
-</head>
 
-<style>
-	.scrollable {
-		height: 70%;
-		width: 100%;
-		overflow-y: auto;
-		padding-right: 10pt;
-	}
-</style>
+	<head>
+<?php include 'head.view.php' ?>
+	</head>
 
 <body>
 
-<a href="../../index.html"> ~ Back </a>
+	<a href="../../index.html"> ~ Back </a>
 
-<p> <?=$status?> </p>
+	<h1> <?=$title?> </h1>
 
-<div class="scrollable">
-<table>
-	<caption> <?=$caption?> </caption>
-	<tr>
-<?php foreach($columns as $col): ?>
-		<th> <?=$col?> </th>
-<?php endforeach ?>
-	</tr>
-<?php foreach($result as $row): ?>
-	<tr>
-	<?php foreach($row as $value): ?>
-		<td> <?=$value?> </td>
-	<?php endforeach ?>
-	</tr>
-<?php endforeach ?>
-</table>
-</div>
+	<p> <?=$status?> </p>
+
+	<div class="scrollable">
+<?php include 'table/table.view.php' ?>
+	</div>
 
 </body>
 

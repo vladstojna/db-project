@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title> Login </title>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+
+	<style>
+
+		input {
+			width: 100%;
+			margin: 10pt 0 10pt 0;
+		}
+
+		input[type=submit] {
+			height: 25pt;
+			font-weight: bold;
+			font-size: 12pt;
+			width: 50%;
+		}
+
+		label {
+			font-weight: bold;
+		}
+
+
+	</style>
+
+	<body>
+
+		<div style="width: 200px">
+			<form style="width: 100%" action="credentials.php" method="POST">
+
+				<label for="host">Host</label>
+				<input type="text" name="host" id="host"/>
+
+				<label for="user">Username</label>
+				<input type="text" name="user" id="user"/>
+
+				<label for="password">Password&nbsp;&nbsp;</label>
+				<input type="text" name="password" id="password"/>
+				
+				<label for="dbname">Database Name</label>
+				<input type="text" name="dbname" id="dbname"/>
+
+				<input type="submit" value="Login"/>
+			</form>
+		</div>
+
+	</body>
+
+</html>
+
