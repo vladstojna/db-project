@@ -9,55 +9,114 @@
 	<body>
 		<h1>Project</h1>
 
+
 		<div id="wrapper">
 
-			<button class="collapsible">
-				Modify...
-			</button>
+			<button class="collapsible"> Modify... </button>
 			<div class="content">
+
 				<button class="collapsible"> Place </button>
 				<div class="content inner">
-					<button class="stripe" onclick="location.href='action/insert/place.php'"> Insert </button>
-					<button class="stripe" onclick="location.href='action/delete/place.php'"> Delete </button>
+					<form action="map.php" method="POST">
+						<input type="hidden" name="data" value="place"/>
+						<button class="stripe" type="submit" name="action" value="insert">
+							INSERT
+						</button>
+						<button class="stripe" type="submit" name="action" value="delete">
+							DELETE
+						</button>
+					</form>
 				</div>
+
 				<button class="collapsible"> Emergency Event </button>
 				<div class="content inner">
-					<button class="stripe" onclick="location.href='action/insert/emergency-event.php'"> Insert </button>
-					<button class="stripe" onclick="location.href='action/delete/emergency-event.php'"> Delete </button>
+					<form action="map.php" method="POST">
+						<input type="hidden" name="data" value="emergency-event"/>
+						<button class="stripe" type="submit" name="action" value="insert">
+							INSERT
+						</button>
+						<button class="stripe" type="submit" name="action" value="delete">
+							DELETE
+						</button>
+					</form>
 				</div>
+
 				<button class="collapsible"> Rescue Process </button>
 				<div class="content inner">
-					<button class="stripe" onclick="location.href='action/insert/rescue-process.php'"> Insert </button>
-					<button class="stripe" onclick="location.href='action/delete/rescue-process.php'"> Delete </button>
+					<form action="map.php" method="POST">
+						<input type="hidden" name="data" value="rescue-process"/>
+						<button class="stripe" type="submit" name="action" value="insert">
+							INSERT
+						</button>
+						<button class="stripe" type="submit" name="action" value="delete">
+							DELETE
+						</button>
+					</form>
 				</div>
+
 				<button class="collapsible"> Medium </button>
 				<div class="content inner">
-					<button class="stripe" onclick="location.href='action/insert/medium.php'"> Insert </button>
-					<button class="stripe" onclick="location.href='action/delete/medium.php'"> Delete </button>
+					<form action="map.php" method="POST">
+						<input type="hidden" name="data" value="medium"/>
+						<button class="stripe" type="submit" name="action" value="insert">
+							INSERT
+						</button>
+						<button class="stripe" type="submit" name="action" value="delete">
+							DELETE
+						</button>
+					</form>
 				</div>
+
 				<button class="collapsible"> Entity </button>
 				<div class="content inner">
-					<button class="stripe" onclick="location.href='action/insert/entity.php'"> Insert </button>
-					<button class="stripe" onclick="location.href='action/delete/entity.php'"> Delete </button>
+					<form action="map.php" method="POST">
+						<input type="hidden" name="data" value="entity"/>
+						<button class="stripe" type="submit" name="action" value="insert">
+							INSERT
+						</button>
+						<button class="stripe" type="submit" name="action" value="delete">
+							DELETE
+						</button>
+					</form>
 				</div>
-			
+
 				<button class="collapsible"> Combat Medium </button>
 				<div class="content inner">
-					<button class="stripe" onclick="location.href='action/insert/medium-combat.php'"> Insert </button>
-					<button class="stripe" onclick="location.href='action/update/medium-combat.php'"> Edit   </button>
-					<button class="stripe" onclick="location.href='action/delete/medium-combat.php'"> Delete </button>
+					<form action="map.php" method="POST">
+						<input type="hidden" name="data" value="medium-combat"/>
+						<button class="stripe" type="submit" name="action" value="insert">
+							INSERT
+						</button>
+						<button class="stripe" type="submit" name="action" value="delete">
+							DELETE
+						</button>
+					</form>
 				</div>
+
 				<button class="collapsible"> Support Medium </button>
 				<div class="content inner">
-					<button class="stripe" onclick="location.href='action/insert/medium-support.php'"> Insert </button>
-					<button class="stripe" onclick="location.href='action/update/medium-support.php'"> Edit   </button>
-					<button class="stripe" onclick="location.href='action/delete/medium-support.php'"> Delete </button>
+					<form action="map.php" method="POST">
+						<input type="hidden" name="data" value="medium-support"/>
+						<button class="stripe" type="submit" name="action" value="insert">
+							INSERT
+						</button>
+						<button class="stripe" type="submit" name="action" value="delete">
+							DELETE
+						</button>
+					</form>
 				</div>
+
 				<button class="collapsible"> Rescue Medium </button>
 				<div class="content inner">
-					<button class="stripe" onclick="location.href='action/insert/medium-rescue.php'"> Insert </button>
-					<button class="stripe" onclick="location.href='action/update/medium-rescue.php'"> Edit   </button>
-					<button class="stripe" onclick="location.href='action/delete/medium-rescue.php'"> Delete </button>
+					<form action="map.php" method="POST">
+						<input type="hidden" name="data" value="medium-rescue"/>
+						<button class="stripe" type="submit" name="action" value="insert">
+							INSERT
+						</button>
+						<button class="stripe" type="submit" name="action" value="delete">
+							DELETE
+						</button>
+					</form>
 				</div>
 			</div>
 
@@ -65,31 +124,37 @@
 				List...
 			</button>
 			<div class="content">
-				<button class="collapsible" onclick="location.href='action/list/rescue-process.php'"> Rescue Processes </button>
-				<div class="content"></div>
+				<form action="map.php" method="POST">
+					<input type="hidden" name="action" value="list"/>
 
-				<button class="collapsible" onclick="location.href='action/list/medium.php'"> Mediums </button>
-				<div class="content"></div>
-
-				<button class="collapsible" onclick="location.href='action/list/medium-process.php'">
-					Mediums per rescue process
-				</button>
-				<div class="content"></div>
-				
-				<button class="collapsible" onclick="location.href='action/list/medium-rescue-place.php'">
-					Rescue mediums per place
-				</button>
-				<div class="content"></div>
+					<button class="stripe" type="submit" name="data" value="rescue-process">
+						Rescue Processes
+					</button>
+					<button class="stripe" type="submit" name="data" value="medium">
+						Mediums
+					</button>
+					<button class="stripe" type="submit" name="data" value="medium-process">
+						Mediums per rescue process
+					</button>
+					<button class="stripe" type="submit" name="data" value="medium-rescue-place">
+						Rescue mediums per place
+					</button>
+				</form>
 			</div>
 
 			<button class="collapsible" >
 				Associate Rescue Processes to...
 			</button>
 			<div class="content">
-				<button class="collapsible" onclick="location.href='action/assoc/process-event.php'"> Emergency Event </button>
-				<div class="content"></div>
-				<button class="collapsible" onclick="location.href='action/assoc/process-medium.php'"> Medium </button>
-				<div class="content"></div>
+				<form action="map.php" method="POST">
+					<input type="hidden" name="action" value="assoc"/>
+					<button class="stripe" type="submit" name="data" value="process-event">
+						Emergency Event
+					</button>
+					<button class="stripe" type="submit" name="data" value="process-medium">
+						Medium
+					</button>
+				</form>
 			</div>
 
 
