@@ -24,10 +24,16 @@ if (isset($action) && !empty($action) && isset($data) && !empty($data)):
 		'medium-rescue',
 		'medium-support');
 
+	$assoc_data = array(
+		'process-event',
+		'process-medium');
+
 	$valid = false;
 
 	if (($action == 'insert' || $action == 'delete') && $action != 'update'):
 		$valid = in_array($data, $all_data);
+	elseif ($action == 'assoc' && action != 'update'):
+		$valid = in_array($data, $assoc_data);
 	else:
 		$valid = in_array($data, $updatable_data);
 	endif;
