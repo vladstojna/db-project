@@ -2,6 +2,8 @@
 
 /* php mapper: from index to particular script */
 
+require_once 'common/helpers.php';
+
 /* get data sent by user */
 
 $action = $_POST['action'];
@@ -34,7 +36,7 @@ if (isset($action) && !empty($action) && isset($data) && !empty($data)):
 		$valid = in_array($data, $all_data);
 	elseif ($action == 'assoc' && action != 'update'):
 		$valid = in_array($data, $assoc_data);
-	else:
+	elseif ($action == 'update'):
 		$valid = in_array($data, $updatable_data);
 	endif;
 
@@ -44,11 +46,5 @@ if (isset($action) && !empty($action) && isset($data) && !empty($data)):
 
 endif;
 
-?>
-
-<html>
-<body>
-	<h1> Nothing to do here <h1>
-</body
-</html>
+echo template('wrong-form.view');
 
