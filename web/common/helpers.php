@@ -2,11 +2,7 @@
 
 define("ROOT_DIR", __DIR__.'/..');
 
-function view($file) {
-	return ROOT_DIR . '/views/' . $file;
-}
-
-function template($file, $args) {
+function template($file, $args=null) {
 	$path = ROOT_DIR . '/views/' . $file . '.php';
 	
 	if (!file_exists($path))
