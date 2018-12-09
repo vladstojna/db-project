@@ -29,7 +29,6 @@ BEGIN
 
 END $$ LANGUAGE plpgsql;
 
-
 /* process_validity: does not allow more processes than emergency events */
 
 CREATE OR REPLACE FUNCTION process_validity() RETURNS TRIGGER AS $$
@@ -48,7 +47,9 @@ BEGIN
 
 END $$ LANGUAGE plpgsql;
 
-/* del_procs: deletes rescue_processes in the event they were associated with a single, previously deleted, emergency event */
+/* del_procs:
+	deletes rescue_processes in the event they were
+	associated with a single, previously deleted, emergency event */
 
 CREATE OR REPLACE FUNCTION delete_process() RETURNS TRIGGER AS $$
 BEGIN
@@ -60,15 +61,52 @@ BEGIN
 	END IF;
 
 	RETURN NULL;
-	
+
+END $$ LANGUAGE plpgsql;
+
+/* allocated_validation:
+	a support medium can only be allocated by a process if it was triggered by said process */
+
+CREATE OR REPLACE FUNCTION allocated_validity() RETURNS TRIGGER AS $$
+BEGIN
+
+	IF NOT EXISTS (
+		SELECT * FROM triggers
+		WHERE medium_number = NEW.medium_number
+			AND entity_name = NEW.entity_name
+			AND rescue_process_number = NEW.rescue_process_number)
+	THEN
+		RAISE EXCEPTION 'Support medium can only be allocated by a process
+			if triggered by said process';
+	END IF;
+	RETURN NEW;
+
+END $$ LANGUAGE plpgsql;
+
+/* coord_request_validity:
+	a coordinator can only request videos from places he/she has/had audited */
+
+CREATE OR REPLACE FUNCTION coord_request_validity() RETURNS TRIGGER AS $$
+BEGIN
+
+	RETURN NEW;
+
 END $$ LANGUAGE plpgsql;
 
 /* Create triggers */
 
-CREATE TRIGGER auto_fill_seg BEFORE INSERT ON video_segment FOR EACH ROW EXECUTE PROCEDURE auto_fill();
+CREATE TRIGGER auto_fill_seg BEFORE INSERT ON video_segment
+	FOR EACH ROW EXECUTE PROCEDURE auto_fill();
 
-CREATE TRIGGER auto_fill_med BEFORE INSERT OR UPDATE ON medium FOR EACH ROW EXECUTE PROCEDURE auto_fill();
+CREATE TRIGGER auto_fill_med BEFORE INSERT OR UPDATE ON medium
+	FOR EACH ROW EXECUTE PROCEDURE auto_fill();
 
-CREATE TRIGGER validate_proc BEFORE INSERT ON rescue_process FOR EACH ROW EXECUTE PROCEDURE process_validity();
+CREATE TRIGGER validate_proc BEFORE INSERT ON rescue_process
+	FOR EACH ROW EXECUTE PROCEDURE process_validity();
 
-CREATE TRIGGER del_proc AFTER DELETE ON emergency_event FOR EACH ROW EXECUTE PROCEDURE delete_process();
+CREATE TRIGGER del_proc AFTER DELETE ON emergency_event
+	FOR EACH ROW EXECUTE PROCEDURE delete_process();
+
+--CREATE TRIGGER allocation_valid BEFORE INSERT ON allocated
+--	FOR EACH ROW EXECUTE PROCEDURE allocated_validity();
+
