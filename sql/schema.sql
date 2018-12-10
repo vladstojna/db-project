@@ -64,7 +64,7 @@ CREATE TABLE place(
 );
 
 CREATE TABLE lookout(
-	place_address VARCHAR(100) NOT NULL,
+	place_address VARCHAR(255) NOT NULL,
 	camera_id     INTEGER      NOT NULL,
 
 	PRIMARY KEY (place_address, camera_id),
@@ -85,7 +85,7 @@ CREATE TABLE rescue_process(
 
 CREATE TABLE emergency_event(
 	phone_number          NUMERIC(9, 0) NOT NULL,
-	call_time             TIMESTAMP(0)       NOT NULL,
+	call_time             TIMESTAMP(0)  NOT NULL,
 	person_name           VARCHAR(80)   NOT NULL,
 	place_address         VARCHAR(255)  NOT NULL,
 	rescue_process_number INTEGER,
