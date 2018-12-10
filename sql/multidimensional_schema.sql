@@ -21,6 +21,7 @@ CREATE TABLE dimension_medium(
 	medium_number INTEGER     NOT NULL,
 	medium_name   VARCHAR(80) NOT NULL,
 	entity_name   VARCHAR(80) NOT NULL,
+	medium_type   VARCHAR(80),
 
 	PRIMARY KEY (medium_id)
 );
@@ -28,17 +29,16 @@ CREATE TABLE dimension_medium(
 CREATE TABLE dimension_time(
 	day   INTEGER NOT NULL,
 	month INTEGER NOT NULL,
-	year  INTEGER NOT NULL,
+	year  INTEGER NOT NULL
 );
-
 
 /* insertion */
 
 INSERT INTO dimension_event
-	(event_id, phone_number, call_time)
-(DEFAULT, SELECT phone_number, call_time FROM emergency_event)
+	(phone_number, call_time)
+SELECT phone_number, call_time FROM emergency_event;
 
 INSERT INTO dimension_medium
-	(medium_id, medium_number, medium_name, entity_name)
-(DEFAULT, SELECT * FROM medium)
+	(medium_number, medium_name, entity_name)
+SELECT medium_number, medium_name, entity_name FROM medium;
 
