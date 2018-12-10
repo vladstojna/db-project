@@ -87,7 +87,17 @@ END $$ LANGUAGE plpgsql;
 	a coordinator can only request videos from places he/she has/had audited */
 
 CREATE OR REPLACE FUNCTION coord_request_validity() RETURNS TRIGGER AS $$
+DECLARE place VARCHAR(255);
 BEGIN
+
+	SELECT place_address INTO place FROM lookout WHERE camera_id = NEW.camera_id;
+
+	IF place NOT IN (SELECT place_address FROM emergency_event NATURAL INNER JOIN audits
+		WHERE coordinator_id = NEW.coordinator_id)
+	THEN
+		RAISE EXCEPTION 'Coordinator cannot request a video from a camera which place of lookout has
+		not been audited by said coordinator';
+	END IF;
 
 	RETURN NEW;
 
