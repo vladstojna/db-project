@@ -40,5 +40,35 @@ SELECT phone_number, call_time FROM emergency_event;
 
 INSERT INTO dimension_medium
 	(medium_number, medium_name, entity_name)
-SELECT medium_number, medium_name, entity_name FROM medium;
+SELECT medium_number, medium_name, entity_name FROM medium_combat NATURAL INNER JOIN medium;
+
+UPDATE dimension_medium SET medium_type = 'Combat' WHERE medium_type IS NULL;
+
+INSERT INTO dimension_medium
+	(medium_number, medium_name, entity_name)
+SELECT medium_number, medium_name, entity_name FROM medium_support NATURAL INNER JOIN medium;
+
+UPDATE dimension_medium SET medium_type = 'Support' WHERE medium_type IS NULL;
+
+INSERT INTO dimension_medium
+	(medium_number, medium_name, entity_name)
+SELECT medium_number, medium_name, entity_name FROM medium_rescue NATURAL INNER JOIN medium;
+
+UPDATE dimension_medium SET medium_type = 'Rescue' WHERE medium_type IS NULL;
+
+
+WITH ms(medium_number, entity_name) AS (
+	SELECT * FROM medium_combat
+	UNION
+	SELECT * FROM medium_rescue
+	UNION
+	SELECT * FROM medium_support)
+
+INSERT INTO dimension_medium
+	(medium_number, medium_name, entity_name)
+SELECT medium_number, medium_name, entity_name FROM medium m
+WHERE NOT EXISTS (
+	SELECT * FROM ms
+	WHERE ms.medium_number = m.medium_number AND ms.entity_name = m.entity_name
+);
 
