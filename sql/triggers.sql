@@ -1,7 +1,9 @@
-DROP TRIGGER IF EXISTS auto_fill_seg ON video_segment;
-DROP TRIGGER IF EXISTS auto_fill_med ON medium;
-DROP TRIGGER IF EXISTS validate_proc ON rescue_process;
-DROP TRIGGER IF EXISTS del_proc ON emergency_event;
+DROP TRIGGER IF EXISTS auto_fill_seg    ON video_segment;
+DROP TRIGGER IF EXISTS auto_fill_med    ON medium;
+DROP TRIGGER IF EXISTS validate_proc    ON rescue_process;
+DROP TRIGGER IF EXISTS del_proc         ON emergency_event;
+DROP TRIGGER IF EXISTS allocation_valid ON allocated;
+DROP TRIGGER IF EXISTS request_valid    ON requests;
 
 /* auto_fill: implements auto incrementing id to video segments per video and media per entity */
 
@@ -117,6 +119,9 @@ CREATE TRIGGER validate_proc BEFORE INSERT ON rescue_process
 CREATE TRIGGER del_proc AFTER DELETE ON emergency_event
 	FOR EACH ROW EXECUTE PROCEDURE delete_process();
 
---CREATE TRIGGER allocation_valid BEFORE INSERT ON allocated
---	FOR EACH ROW EXECUTE PROCEDURE allocated_validity();
+CREATE TRIGGER allocation_valid BEFORE INSERT ON allocated
+	FOR EACH ROW EXECUTE PROCEDURE allocated_validity();
+
+CREATE TRIGGER request_valid BEFORE INSERT ON requests
+	FOR EACH ROW EXECUTE PROCEDURE coord_request_validity();
 
