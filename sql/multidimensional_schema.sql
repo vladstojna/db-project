@@ -21,7 +21,7 @@ CREATE TABLE dimension_medium(
 	medium_number INTEGER     NOT NULL,
 	medium_name   VARCHAR(80) NOT NULL,
 	entity_name   VARCHAR(80) NOT NULL,
-	medium_type   VARCHAR(80),
+	medium_type   VARCHAR(10),
 
 	PRIMARY KEY (medium_id)
 );
