@@ -27,10 +27,37 @@ CREATE TABLE dimension_medium(
 );
 
 CREATE TABLE dimension_time(
-	day   INTEGER NOT NULL,
-	month INTEGER NOT NULL,
-	year  INTEGER NOT NULL
+	time_id INTEGER NOT NULL,
+	day     INTEGER NOT NULL,
+	month   INTEGER NOT NULL,
+	year    INTEGER NOT NULL,
+
+	PRIMARY KEY (time_id)
 );
+
+CREATE TABLE company(
+	event_id  INTEGER NOT NULL,
+	medium_id INTEGER NOT NULL,
+	time_id   INTEGER NOT NULL,
+
+	FOREIGN KEY (event_id)  REFERENCES dimension_event(event_id)   ON DELETE CASCADE,
+	FOREIGN KEY (medium_id) REFERENCES dimension_medium(medium_id) ON DELETE CASCADE,
+	FOREIGN KEY (time_id)   REFERENCES dimension_time(time_id)     ON DELETE CASCADE
+);
+
+/* surrogate key stored procedure */
+
+CREATE OR REPLACE FUNCTION date_convert(d TIMESTAMP) RETURNS INTEGER AS $$
+DECLARE sk INTEGER;
+BEGIN
+
+	sk :=
+		EXTRACT(YEAR  FROM d) * 10000 +
+		EXTRACT(MONTH FROM d) * 100 +
+		EXTRACT(DAY   FROM d);
+	RETURN CAST(sk AS INTEGER);
+
+END $$ LANGUAGE plpgsql;
 
 /* insertion */
 
