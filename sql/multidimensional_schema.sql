@@ -99,7 +99,17 @@ WHERE NOT EXISTS (
 	WHERE ms.medium_number = m.medium_number AND ms.entity_name = m.entity_name
 );
 
+
 INSERT INTO dimension_time
 SELECT date_convert(d), EXTRACT(year FROM d), EXTRACT(month FROM d), EXTRACT(day FROM d)
-FROM generate_series(TIMESTAMP '2018-01-01', TIMESTAMP '2018-01-10', INTERVAL '1 day') d;
+FROM generate_series(TIMESTAMP '2018-01-01', TIMESTAMP '2050-12-31', INTERVAL '1 day') d;
+
+/*
+WITH
+	event_ids(event_id)   AS (SELECT event_id  FROM dimension_event),
+	medium_ids(medium_id) AS (SELECT medium_id FROM dimension_medium),
+	time_ids(time_id)     AS (SELECT time_id   FROM dimension_time)
+INSERT INTO company
+SELECT * FROM event_ids, medium_ids, time_ids;
+*/
 
