@@ -99,3 +99,7 @@ WHERE NOT EXISTS (
 	WHERE ms.medium_number = m.medium_number AND ms.entity_name = m.entity_name
 );
 
+INSERT INTO dimension_time
+SELECT date_convert(d), EXTRACT(year FROM d), EXTRACT(month FROM d), EXTRACT(day FROM d)
+FROM generate_series(TIMESTAMP '2018-01-01', TIMESTAMP '2018-01-10', INTERVAL '1 day') d;
+
