@@ -102,7 +102,33 @@ WHERE NOT EXISTS (
 
 INSERT INTO dimension_time
 SELECT date_convert(d), EXTRACT(year FROM d), EXTRACT(month FROM d), EXTRACT(day FROM d)
-FROM generate_series(TIMESTAMP '2018-01-01', TIMESTAMP '2050-12-31', INTERVAL '1 day') d;
+FROM generate_series(TIMESTAMP '2018-01-01', TIMESTAMP '2030-12-31', INTERVAL '1 day') d;
+
+INSERT INTO company 
+SELECT event_id, medium_id, date_convert(call_time) 
+FROM dimension_medium NATURAL INNER JOIN dimension_event NATURAL INNER JOIN emergency_event 
+NATURAL INNER JOIN transports
+WHERE medium_type = 'Rescue';
+
+INSERT INTO company SELECT event_id, medium_id, date_convert(call_time) 
+FROM dimension_medium NATURAL INNER JOIN dimension_event NATURAL INNER JOIN emergency_event 
+NATURAL INNER JOIN allocated 
+WHERE medium_type = 'Support';
+
+/* Assuming all triggered mediums not in allocated or transports are of type 'Combat' */
+WITH ms(medium_number, entity_name, rescue_process_number) AS (
+	SELECT medium_number, entity_name, rescue_process_number FROM transports
+	UNION
+	SELECT medium_number, entity_name, rescue_process_number FROM allocated)
+
+INSERT INTO company SELECT event_id, medium_id, date_convert(call_time)
+FROM dimension_medium NATURAL INNER JOIN dimension_event NATURAL INNER JOIN emergency_event 
+NATURAL INNER JOIN (
+	SELECT * FROM triggers t
+	WHERE NOT EXISTS (
+		SELECT * FROM ms WHERE ms.medium_number = t.medium_number AND ms.entity_name = t.entity_name AND ms.rescue_process_number = t.rescue_process_number
+	)) AS medium_combat
+WHERE medium_type = 'Combat';
 
 /*
 WITH
