@@ -114,7 +114,8 @@ FROM dimension_medium
 	NATURAL INNER JOIN dimension_event
 	NATURAL INNER JOIN emergency_event ev
 	NATURAL INNER JOIN transports
-WHERE medium_type = 'Rescue';
+WHERE medium_type = 'Rescue'
+AND date_convert(ev.call_time) IN (SELECT time_id FROM dimension_time);
 
 -- insert support mediums that have been allocated
 INSERT INTO company
@@ -123,7 +124,8 @@ FROM dimension_medium
 	NATURAL INNER JOIN dimension_event
 	NATURAL INNER JOIN emergency_event ev
 	NATURAL INNER JOIN allocated
-WHERE medium_type = 'Support';
+WHERE medium_type = 'Support'
+AND date_convert(ev.call_time) IN (SELECT time_id FROM dimension_time);
 
 /* Assuming all triggered mediums not in allocated or transports are of type 'Combat' */
 WITH ms(medium_number, entity_name, rescue_process_number) AS (
@@ -147,5 +149,6 @@ FROM dimension_medium
 				AND ms.rescue_process_number = t.rescue_process_number
 		)
 	) AS medium_combat
-WHERE medium_type = 'Combat';
+WHERE medium_type = 'Combat'
+AND date_convert(ev.call_time) IN (SELECT time_id FROM dimension_time);
 
